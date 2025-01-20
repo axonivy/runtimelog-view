@@ -1,0 +1,48 @@
+{
+  "name": "@axonivy/log-view-standalone",
+  "version": "13.1.0-next",
+  "private": true,
+  "author": "Axon Ivy AG",
+  "homepage": "https://developer.axonivy.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axonivy/runtimelog-view-client"
+  },
+  "dependencies": {
+    "@axonivy/log-view": "*",
+    "@axonivy/log-view-core": "*",
+    "@axonivy/ui-components": "~13.1.0-next.443",
+    "@axonivy/ui-icons": "~13.1.0-next.443",
+    "path-browserify": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^5.4.2"
+  },
+  "scripts": {
+    "clean": "rimraf build",
+    "build": "tsc --build",
+    "build:clean": "npm run clean && npm run build",
+    "package": "vite build",
+    "type": "tsc --noEmit",
+    "dev": "vite",
+    "serve": "vite preview"
+  },
+  "type": "module",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
