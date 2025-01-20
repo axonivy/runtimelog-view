@@ -13,7 +13,7 @@ export default defineConfig({
     headless: process.env.CI ? true : false
   },
   webServer: {
-    command: `npm run ${process.env.CI ? 'serve' : 'dev'} -w @axonivy/form-editor-standalone`,
+    command: `npm run ${process.env.CI ? 'serve' : 'dev'} -w @axonivy/log-view-standalone`,
     url: process.env.CI ? 'http://localhost:4173' : 'http://localhost:3000',
     reuseExistingServer: !process.env.CI
   },

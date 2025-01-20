@@ -16,9 +16,9 @@ tsGen.DEFAULT_OPTIONS.bannerComment = `
  */
 `;
 
-const tsOut = path.resolve('./src/data/form.ts');
+const tsOut = path.resolve('./src/data/log.ts');
 var schemaUri =
-  'https://jenkins.ivyteam.io/job/core_json-schema/job/master/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.dialog.form.lsp.schema/target/schema/form/12.0.0/form-tsgen.json';
+  'https://jenkins.ivyteam.io/job/core_json-schema/job/XIVY-15692-RuntimeLogLspSchema/21/artifact/workspace/ch.ivyteam.ivy.runtime.log.lsp.schema/target/schema/log/13.1.0/log-tsgen.json';
 
 const args = process.argv.slice(2);
 if (args.length > 0) {
@@ -59,7 +59,7 @@ function writeSrc(ts) {
 
 if (schemaUri.startsWith('http')) {
   loadJson(schemaUri)
-    .then(schema => tsGen.compile(schema, 'forms'))
+    .then(schema => tsGen.compile(schema, 'logs'))
     .then(ts => writeSrc(ts));
 } else {
   tsGen.compileFromFile(schemaUri).then(ts => writeSrc(ts));

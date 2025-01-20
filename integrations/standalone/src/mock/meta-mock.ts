@@ -1,13 +1,13 @@
-import type { CompositeInfo, ParameterInfo, VariableInfo } from '@axonivy/form-editor-protocol';
+import type { CompositeInfo, ParameterInfo, VariableInfo } from '@axonivy/log-view-protocol';
 
 export const ATTRIBUTES: VariableInfo = {
   types: {
-    'testform.Person': [
+    'testlog.Person': [
       {
         attribute: 'address',
         description: '',
         simpleType: 'Address',
-        type: 'testform.Address'
+        type: 'testlog.Address'
       },
       {
         attribute: 'birthday',
@@ -28,7 +28,7 @@ export const ATTRIBUTES: VariableInfo = {
         type: 'String'
       }
     ],
-    'testform.Address': [
+    'testlog.Address': [
       {
         attribute: 'address',
         description: '',
@@ -36,20 +36,20 @@ export const ATTRIBUTES: VariableInfo = {
         type: 'String'
       }
     ],
-    'testform.testForm.testFormData': [
+    'testlog.testLog.testLogData': [
       {
         attribute: 'data',
         description: '',
         simpleType: 'Data',
-        type: 'testform.Data'
+        type: 'testlog.Data'
       }
     ],
-    'testform.Data': [
+    'testlog.Data': [
       {
         attribute: 'persons',
         description: '',
         simpleType: 'List<Person>',
-        type: 'List<testform.Person>'
+        type: 'List<testlog.Person>'
       },
       {
         attribute: 'strings',
@@ -63,34 +63,34 @@ export const ATTRIBUTES: VariableInfo = {
     {
       attribute: 'data',
       description: '',
-      simpleType: 'testFormData',
-      type: 'testform.testForm.testFormData'
+      simpleType: 'testLogData',
+      type: 'testlog.testLog.testLogData'
     }
   ]
 };
 
 export const COMPOSITES: Array<CompositeInfo> = [
   {
-    id: 'form.test.project.AddressComponent',
+    id: 'log.test.project.AddressComponent',
     startMethods: [
       {
         name: 'start',
-        parameters: [{ name: 'address', type: 'form.test.project.Address', description: 'Address for the component' }],
+        parameters: [{ name: 'address', type: 'log.test.project.Address', description: 'Address for the component' }],
         deprecated: false
       },
       { name: 'empty', parameters: [], deprecated: false }
     ]
   },
   {
-    id: 'form.test.project.PersonComponent',
+    id: 'log.test.project.PersonComponent',
     startMethods: [
       {
         name: 'start',
-        parameters: [{ name: 'person', type: 'form.test.project.Person', description: 'Person for the Component' }],
+        parameters: [{ name: 'person', type: 'log.test.project.Person', description: 'Person for the Component' }],
         deprecated: false
       }
     ]
   }
 ];
 
-export const COMPOSITE_PARAMS: Array<ParameterInfo> = [{ name: 'info', type: 'String', description: 'Information' }];
+export const COMPOSITE_PARAMS: Array<ParameterInfo> = [{ name: 'info', type: 'String', description: 'Inlogation' }];
