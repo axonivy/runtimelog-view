@@ -1,13 +1,13 @@
 {
   "private": true,
-  "name": "@axonivy/form-editor-playwright",
+  "name": "@axonivy/log-view-playwright",
   "version": "13.1.0-next",
-  "description": "Playwright tests for the Axon Ivy form editor",
+  "description": "Playwright tests for the Axon Ivy log view",
   "author": "Axon Ivy AG",
   "homepage": "https://developer.axonivy.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/axonivy/form-editor-client"
+    "url": "https://github.com/axonivy/log-view-client"
   },
   "devDependencies": {
     "@playwright/test": "1.48.2"

@@ -4,16 +4,16 @@
 
   <id>bundle</id>
 
-  <formats>
-    <format>zip</format>
-  </formats>
+  <logats>
+    <logat>zip</logat>
+  </logats>
 
   <includeBaseDirectory>false</includeBaseDirectory>
 
   <fileSets>
     <fileSet>
-      <directory>../../form-test-project/target/screenshots</directory>
-      <outputDirectory>form-editor</outputDirectory>
+      <directory>../../log-test-project/target/screenshots</directory>
+      <outputDirectory>log-view</outputDirectory>
     </fileSet>
   </fileSets>
 </assembly>

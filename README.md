@@ -1,6 +1,6 @@
-# Form Editor (Prototype)
+# Form View (Prototype)
 
-This repo contains the prototype of the web-based next gen form editor.
+This repo contains the prototype of the web-based next gen form view.
 
 ## Client
 

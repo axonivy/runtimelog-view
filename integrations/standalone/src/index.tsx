@@ -1,6 +1,6 @@
 import './index.css';
-import { App, ClientContextProvider, QueryProvider, initQueryClient } from '@axonivy/form-editor';
-import { FormClientJsonRpc } from '@axonivy/form-editor-core';
+import { App, ClientContextProvider, QueryProvider, initQueryClient } from '@axonivy/log-view';
+import { LogClientJsonRpc } from '@axonivy/log-view-core';
 import { ThemeProvider, toast, Toaster, Spinner, Flex, HotkeysProvider } from '@axonivy/ui-components';
 import { webSocketConnection, type Connection } from '@axonivy/jsonrpc';
 import React from 'react';
@@ -32,7 +32,7 @@ export async function start() {
   );
 
   const initialize = async (connection: Connection) => {
-    const client = await FormClientJsonRpc.startClient(connection);
+    const client = await LogClientJsonRpc.startClient(connection);
     root.render(
       <React.StrictMode>
         <ThemeProvider defaultTheme={theme}>
@@ -50,12 +50,12 @@ export async function start() {
     return client;
   };
 
-  const reconnect = async (connection: Connection, oldClient: FormClientJsonRpc) => {
+  const reconnect = async (connection: Connection, oldClient: LogClientJsonRpc) => {
     await oldClient.stop();
     return initialize(connection);
   };
 
-  await webSocketConnection<FormClientJsonRpc>(FormClientJsonRpc.webSocketUrl(server)).listen({
+  await webSocketConnection<LogClientJsonRpc>(LogClientJsonRpc.webSocketUrl(server)).listen({
     onConnection: initialize,
     onReconnect: reconnect,
     logger: { log: console.log, info: toast.info, warn: toast.warning, error: toast.error }

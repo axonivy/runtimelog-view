@@ -1,6 +1,6 @@
-import type { ComponentData, FormData, ValidationResult } from '@axonivy/form-editor-protocol';
+import type { ComponentData, LogData, ValidationResult } from '@axonivy/log-view-protocol';
 
-export const validateMock = (data: FormData): Array<ValidationResult> => {
+export const validateMock = (data: LogData): Array<ValidationResult> => {
   const validations: Array<ValidationResult> = [];
   validateDeep(data.components, validations);
   validations.push({ path: 'Input-1', message: 'Global warning', severity: 'WARNING' });

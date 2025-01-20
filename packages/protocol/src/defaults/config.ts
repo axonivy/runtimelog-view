@@ -1,6 +1,4 @@
-import type { FormData } from '../data/form-data';
-
-export const EMPTY_FORM: FormData = {
+export const EMPTY_FORM = {
   id: 'empty',
   config: {
     renderer: 'JSF',

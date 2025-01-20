@@ -46,7 +46,7 @@ export class Canvas {
     }
   }
 
-  async expectFormOrder(expected: Array<string>) {
+  async expectLogOrder(expected: Array<string>) {
     for (let i = 0; i < expected.length; i++) {
       await expect(this.blockByNth(i).block).toContainText(expected[i]);
     }

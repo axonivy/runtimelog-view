@@ -1,4 +1,4 @@
-import { server, user } from './page-objects/form-editor';
+import { server, user } from './page-objects/log-view';
 
 const setup = async () => {
   if (!process.env.BASE_URL) {
@@ -7,7 +7,7 @@ const setup = async () => {
   await fetch(`${server}api/web-ide/workspaces`, {
     method: 'GET',
     headers: {
-      'X-Requested-By': 'dataclass-editor-tests',
+      'X-Requested-By': 'dataclass-view-tests',
       'Content-Type': 'application/json',
       Authorization: 'Basic ' + Buffer.from(user + ':' + user).toString('base64')
     }
