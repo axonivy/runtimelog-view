@@ -1,4 +1,4 @@
-import { EMPTY_FORM, type LogContext, type LogData } from '@axonivy/log-view-protocol';
+import { type RuntimeLogViewData } from '@axonivy/log-view-protocol';
 import { createContext, useContext, type SetStateAction, type Dispatch, useState, useEffect } from 'react';
 import { useReadonly, type useHistoryData } from '@axonivy/ui-components';
 
@@ -22,22 +22,18 @@ export const useUiState = () => {
 };
 
 export type AppContext = {
-  data: LogData;
   selectedElement?: string;
   setSelectedElement: Dispatch<SetStateAction<string | undefined>>;
   ui: UI;
   setUi: Dispatch<SetStateAction<UI>>;
-  context: LogContext;
-  history: ReturnType<typeof useHistoryData<LogData>>;
+  history: ReturnType<typeof useHistoryData<RuntimeLogViewData>>;
   helpUrl: string;
 };
 
 export const appContext = createContext<AppContext>({
-  data: EMPTY_FORM,
   setSelectedElement: () => {},
   ui: DEFAULT_UI,
   setUi: () => {},
-  context: { app: '', pmv: '', file: '' },
   history: { push: () => {}, undo: () => {}, redo: () => {}, canUndo: false, canRedo: false },
   helpUrl: ''
 });

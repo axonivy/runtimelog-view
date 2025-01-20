@@ -1,8 +1,7 @@
-import View from './View';
-import type { LogViewProps } from '@axonivy/log-view-protocol';
+import type { RuntimeLogEntryLsp } from '@axonivy/log-view-protocol';
 import './App.css';
 
-function App(props: LogViewProps) {
+function App(props: RuntimeLogEntryLsp) {
   return <View {...props} />;
 }
 

@@ -1,14 +1,16 @@
-import type { LogClient, LogView } from '@axonivy/log-view-protocol';
+import type { LogClient, RuntimeLogEntryLsp } from '@axonivy/log-view-protocol';
 import { Emitter } from '@axonivy/jsonrpc';
-import { data } from './data-mock';
 
 export class LogClientMock implements LogClient {
-  private logData: LogView = {
-    context: { app: 'mock', pmv: 'mock', file: 'mock.f.json' },
-    readonly: false,
-    defaults: {},
-    data: data,
-    helpUrl: 'https://dev.axonivy.com'
+  private logData: RuntimeLogEntryLsp = {
+    category: '',
+    level: 'OFF',
+    message: '',
+    processElement: '',
+    request: '',
+    throwableInformationMsg: '',
+    timestamp: '',
+    userDialogId: ''
   };
 
   protected onValidationChangedEmitter = new Emitter<void>();
@@ -16,7 +18,7 @@ export class LogClientMock implements LogClient {
   protected onDataChangedEmitter = new Emitter<void>();
   onDataChanged = this.onDataChangedEmitter.event;
 
-  data(): Promise<LogView> {
+  data(): Promise<RuntimeLogEntryLsp> {
     return Promise.resolve(this.logData);
   }
 }

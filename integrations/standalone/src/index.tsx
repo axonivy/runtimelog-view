@@ -39,7 +39,7 @@ export async function start() {
           <ClientContextProvider client={client}>
             <QueryProvider client={queryClient}>
               <HotkeysProvider initiallyActiveScopes={['global']}>
-                <App context={{ app, pmv, file }} />
+                <App context={{ app, pmv, file }} category={''} level={'OFF'} message={''} processElement={''} request={''} throwableInformationMsg={''} timestamp={''} userDialogId={''} />
               </HotkeysProvider>
             </QueryProvider>
           </ClientContextProvider>
