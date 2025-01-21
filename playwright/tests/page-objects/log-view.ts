@@ -1,7 +1,4 @@
-import type { Locator, Page } from '@playwright/test';
-import { Toolbar } from './toolbar';
-import { Canvas } from './canvas';
-import { Inscription } from './inscription';
+import type { Page } from '@playwright/test';
 import { randomUUID } from 'crypto';
 
 export const testLog = 'src_hd/log/test/project/test/test';
@@ -36,46 +33,7 @@ export class LogView {
     return await this.open(page, url);
   }
 
-  static async openNewLog(page: Page, options?: { block?: string }) {
-    const name = `tmp${randomUUID().replaceAll('-', '')}`;
-    const namespace = 'temp';
-    const result = await fetch(`${server}${ws}/api/web-ide/hd`, {
-      method: 'POST',
-      headers: {
-        'X-Requested-By': 'log-view-tests',
-        'Content-Type': 'application/json',
-        Authorization: 'Basic ' + Buffer.from(user + ':' + user).toString('base64')
-      },
-      body: JSON.stringify({ namespace, name, type: 'Log', project: { app, pmv } })
-    });
-    if (!result.ok) {
-      console.log(`Failed to create log: ${result.status}`);
-    }
-    const view = await this.openLog(page, `src_hd/${namespace}/${name}/${name}`);
-    if (options?.block) {
-      await view.createBlock(options.block);
-    }
-    return view;
-  }
-
   static async openMock(page: Page) {
     return await this.open(page, 'mock.html');
-  }
-
-  get toolbar() {
-    return new Toolbar(this.page);
-  }
-
-  get canvas() {
-    return new Canvas(this.page);
-  }
-
-  get inscription() {
-    return new Inscription(this.page);
-  }
-
-  async createBlock(block: string, target?: Locator) {
-    const palette = await this.toolbar.openPalette('All Components');
-    await palette.dndTo(block, target ?? this.canvas.dropZone);
   }
 }

@@ -21,7 +21,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       fileName: 'view',
-      logats: ['es']
+      formats: ['es']
     },
     rollupOptions: {
       external: [
