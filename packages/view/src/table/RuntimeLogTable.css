@@ -1,0 +1,10 @@
+.master-content-container {
+  height: 100%;
+  padding: var(--size-3);
+  overflow: auto;
+}
+
+.master-content {
+  min-height: 0;
+  height: fit-content;
+}

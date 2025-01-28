@@ -25,7 +25,7 @@ export const data: RuntimeLogViewData = {
     },
     {
       level: LevelValues.WARN,
-      message: 'Process intermediate event',
+      message: 'afdssfProcess intermediate event',
       category: 'runtimelog',
       processElement: '',
       request: '',

@@ -1,10 +1,27 @@
-import type { RuntimeLogEntryLsp } from '@axonivy/log-view-protocol';
+import type { RuntimeLogViewData, 
+} from '@axonivy/log-view-protocol';
+import React from 'react';
+import {
+  Flex,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from '@axonivy/ui-components';
+import { RuntimeLogTable } from './../table/RuntimeLogTable';
 
-export const View = (props: RuntimeLogEntryLsp) => {
+interface ViewProps {
+  runtimeLogViewData: RuntimeLogViewData;
+}
+
+export const View: React.FC<ViewProps> = ({ runtimeLogViewData }) => {
   return (
-    <div>
-      <h1>Hello World </h1>
-      {props.message}
-    </div>
+    <>
+      <ResizablePanelGroup direction='horizontal' style={{ height: `100vh` }}>
+        <ResizablePanel defaultSize={75} minSize={50} className='master-panel'>
+          <Flex className='panel-content-container master-container' direction='column'>
+            <RuntimeLogTable runtimeLogViewData={runtimeLogViewData}  />
+          </Flex>
+        </ResizablePanel>
+      </ResizablePanelGroup>
+    </>
   );
 };
