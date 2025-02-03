@@ -1,7 +1,6 @@
 import type { RuntimeLogEntryLsp, RuntimeLogViewData } from '@axonivy/log-view-protocol';
 import {
   Flex,
-  IvyIcon,
   selectRow,
   SortableHeader,
   Table,
@@ -13,7 +12,11 @@ import {
 import { getCoreRowModel, type ColumnDef } from '@tanstack/table-core';
 import { useReactTable } from '@tanstack/react-table';
 import { LogRow } from './LogRow';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useMemo, useState } from 'react';
+import { FilterOptions } from './FilterOptions';
+import './RuntimeLogTable.css';
+import './LevelIcon.css';
+import { levels as levels } from './LevelIcon';
 
 interface ViewProps {
   runtimeLogViewData: RuntimeLogViewData;
@@ -22,32 +25,39 @@ interface ViewProps {
 const logLevelIcon = (level: string) => {
   switch (level) {
     case 'INFO':
-      return <IvyIcon icon={IvyIcons.InfoCircle} />;
+      return levels[1].label;
     case 'WARN':
-      return <IvyIcon icon={IvyIcons.Caution} />;
+      return levels[2].label;
     case 'ERROR':
-      return <IvyIcon icon={IvyIcons.ErrorXMark} />;
+      return levels[3].label;
     case 'FATAL':
-      return <IvyIcon icon={IvyIcons.InfoCircle} />;
+      return levels[4].label;
     case 'DEBUG':
-      return <IvyIcon icon={IvyIcons.Tool} />;
+      return levels[5].label;
     default:
-      return <IvyIcon icon={IvyIcons.Error} />;
+      return levels[1].label;
   }
 };
 
 export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
   const sort = useTableSort();
-  const globalFilter = useTableGlobalFilter();
+  const search = useTableGlobalFilter();
+
+  const [selectedLevel, setSelectedLevel] = useState<string>('ALL');
+
+  const filteredData = useMemo(() => {
+    if (selectedLevel === 'ALL') return runtimeLogViewData.entries;
+    return runtimeLogViewData.entries.filter(entry => entry.level === selectedLevel);
+  }, [runtimeLogViewData.entries, selectedLevel]);
 
   const columns: Array<ColumnDef<RuntimeLogEntryLsp, string>> = [
     {
       accessorKey: 'level',
       header: ({ column }) => <SortableHeader column={column} name='Type' />,
       cell: cell => (
-        <div>
+        <Flex gap={2}>
           {logLevelIcon(cell.getValue())} {cell.getValue()}
-        </div>
+        </Flex>
       ),
       minSize: 50
     },
@@ -64,21 +74,31 @@ export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
   ];
 
   const table = useReactTable({
-    enableMultiRowSelection: true,
+    enableMultiRowSelection: false,
     ...sort.options,
-    ...globalFilter.options,
-    data: runtimeLogViewData.entries,
+    ...search.options,
+    data: filteredData,
     columns,
     getCoreRowModel: getCoreRowModel(),
     state: {
       ...sort.tableState,
-      ...globalFilter.tableState
+      ...search.tableState
     }
   });
 
+  const handleLogLevelChange = (checked: boolean, value: string) => {
+    if (checked) {
+      setSelectedLevel(value);
+    }
+  };
+
   return (
-    <Flex direction='column' gap={4} className='master-content-container' onClick={() => selectRow(table)}>
-      {globalFilter.filter}
+    <Flex direction='column' gap={2} className='master-content-container'>
+      <Flex gap={2}>
+        <div style={{ width: '100%' }}> {search.filter}</div>
+        <FilterOptions selectedLevel={selectedLevel} selectedLevels={levels} handleLogLevelChange={handleLogLevelChange} />
+      </Flex>
+
       <Table style={{ overflowX: 'unset' }}>
         <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => selectRow(table)} />
         <TableBody>

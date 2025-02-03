@@ -1,11 +1,7 @@
-import type { RuntimeLogViewData, 
-} from '@axonivy/log-view-protocol';
+import type { RuntimeLogViewData } from '@axonivy/log-view-protocol';
 import React from 'react';
-import {
-  Flex,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from '@axonivy/ui-components';
+import './View.css';
+import { Flex, ResizablePanel, ResizablePanelGroup } from '@axonivy/ui-components';
 import { RuntimeLogTable } from './../table/RuntimeLogTable';
 
 interface ViewProps {
@@ -18,7 +14,7 @@ export const View: React.FC<ViewProps> = ({ runtimeLogViewData }) => {
       <ResizablePanelGroup direction='horizontal' style={{ height: `100vh` }}>
         <ResizablePanel defaultSize={75} minSize={50} className='master-panel'>
           <Flex className='panel-content-container master-container' direction='column'>
-            <RuntimeLogTable runtimeLogViewData={runtimeLogViewData}  />
+            <RuntimeLogTable runtimeLogViewData={runtimeLogViewData} />
           </Flex>
         </ResizablePanel>
       </ResizablePanelGroup>
