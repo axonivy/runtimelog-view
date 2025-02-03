@@ -5,7 +5,7 @@ import  { data }from './data-mock';
 
 export class LogClientMock implements LogClient {
   private logData: RuntimeLogViewData = {
-    entries: [data.entries[0], data.entries[1], data.entries[2]]
+    entries: data.entries
   };
 
   protected onValidationChangedEmitter = new Emitter<void>();

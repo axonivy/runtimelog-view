@@ -23,7 +23,7 @@ export function start() {
           <QueryProvider client={queryClient}>
             <ReadonlyProvider readonly={readonly}>
               <HotkeysProvider initiallyActiveScopes={['global']}>
-                <App entries={[data.entries[0], data.entries[1], data.entries[2]]} />
+                <App entries={data.entries} />
               </HotkeysProvider>
             </ReadonlyProvider>
           </QueryProvider>

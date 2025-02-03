@@ -24,6 +24,8 @@ interface ViewProps {
 
 const logLevelIcon = (level: string) => {
   switch (level) {
+    case 'DEBUG':
+      return levels[0].label;
     case 'INFO':
       return levels[1].label;
     case 'WARN':
@@ -32,8 +34,6 @@ const logLevelIcon = (level: string) => {
       return levels[3].label;
     case 'FATAL':
       return levels[4].label;
-    case 'DEBUG':
-      return levels[5].label;
     default:
       return levels[1].label;
   }
@@ -59,18 +59,17 @@ export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
           {logLevelIcon(cell.getValue())} {cell.getValue()}
         </Flex>
       ),
-      minSize: 50
     },
     {
       accessorKey: 'category',
       header: ({ column }) => <SortableHeader column={column} name='Project' />,
-      cell: cell => <div>{cell.getValue()}</div>
+      cell: cell => cell.getValue()
     },
     {
       accessorKey: 'message',
       header: ({ column }) => <SortableHeader column={column} name='Message' />,
-      cell: cell => <div>{cell.getValue()}</div>
-    }
+      cell: cell => cell.getValue(),
+    },
   ];
 
   const table = useReactTable({

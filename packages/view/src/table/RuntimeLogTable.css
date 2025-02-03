@@ -8,3 +8,7 @@
   min-height: 0;
   height: fit-content;
 }
+
+.ui-table-head span {
+  font-weight: bold;
+}
