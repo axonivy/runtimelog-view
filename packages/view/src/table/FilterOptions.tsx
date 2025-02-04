@@ -1,13 +1,17 @@
 import {
-  BasicCheckbox,
   Button,
+  Checkbox,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
+  Field,
+  IvyIcon,
+  Label
 } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
 
 interface FilterOptionsProps {
   selectedLevel: string;
@@ -26,7 +30,11 @@ export const FilterOptions = ({ selectedLevel, selectedLevels, handleLogLevelCha
 
       <DropdownMenuContent>
         <DropdownMenuLabel>
-          <BasicCheckbox label='Show only User Logs' />
+          <Field direction='row' alignItems='center' gap={2}>
+            <IvyIcon icon={IvyIcons.InfoCircle} />
+            <Label>Show only User Logs</Label>
+            <Checkbox />
+          </Field>
         </DropdownMenuLabel>
 
         {selectedLevels.map(level => (

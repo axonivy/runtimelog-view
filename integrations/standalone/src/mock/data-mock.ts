@@ -16,72 +16,79 @@ export const data: RuntimeLogViewData = {
     {
       level: LevelValues.INFO,
       message: 'Process intermediate event',
-      category: 'portal',
+      category: 'User',
       processElement: '',
       request: '',
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-      userDialogId: 'null'
+      userDialogId: 'null',
+      project: 'portal'
     },
     {
       level: LevelValues.WARN,
       message: 'Process intermediate event',
-      category: 'portal',
+      category: 'User',
       processElement: '',
       request: '',
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-      userDialogId: 'null'
+      userDialogId: 'null',
+      project: 'portal'
     },
     {
       level: LevelValues.ERROR,
       message: 'Process intermediate event',
-      category: 'portal',
+      category: 'User',
       processElement: '',
       request: '',
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-      userDialogId: 'null'
+      userDialogId: 'null',
+      project: 'portal'
     },
     {
       level: LevelValues.ERROR,
       message: 'Process intermediate event',
-      category: 'portal',
+      category: 'runtimelog',
       processElement: '',
       request: '',
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-      userDialogId: 'null'
+      userDialogId: 'null',
+      project: 'portal'
     },
     {
       level: LevelValues.ERROR,
       message: 'Process intermediate event',
-      category: 'Process-inspector',
+      category: 'User',
       processElement: '',
       request: '',
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-      userDialogId: 'null'
+      userDialogId: 'null',
+      project: 'Process-inspector'
     },
     {
       level: LevelValues.FATAL,
       message: 'Process intermediate event',
-      category: 'Process-inspector',
+      category: 'USer',
       processElement: '',
       request: '',
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-      userDialogId: 'null'
+      userDialogId: 'null',
+      project: 'Process-inspector'
     },
     {
       level: LevelValues.DEBUG,
       message: 'Process intermediate event',
-      category: 'Process-inspector',
+      category: 'User',
       processElement: '',
       request: '',
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-      userDialogId: 'null'
+      userDialogId: 'null',
+      project: 'Process-inspector'
     }
   ]
 };

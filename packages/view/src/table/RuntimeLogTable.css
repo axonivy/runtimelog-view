@@ -17,6 +17,19 @@
   width: 10%;
 }
 
+body > div:nth-child(6) {
+  width: 10%;
+}
+
 .search-field {
   width: 90%;
+}
+
+.ui-table-body tr td {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.ui-table-body tr td div {
+  align-items: center;
 }

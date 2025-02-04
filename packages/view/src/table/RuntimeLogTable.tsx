@@ -70,12 +70,14 @@ export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
         <Flex gap={2}>
           {logLevelIcon(cell.getValue())} {cell.getValue()}
         </Flex>
-      )
+      ),
+      maxSize: 30
     },
     {
-      accessorKey: 'category',
+      accessorKey: 'project',
       header: ({ column }) => <SortableHeader column={column} name='Project' />,
-      cell: cell => cell.getValue()
+      cell: cell => cell.getValue(),
+      maxSize: 30
     },
     {
       accessorKey: 'message',
@@ -105,7 +107,7 @@ export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
 
   return (
     <Flex direction='column' gap={2} className='master-content-container'>
-      <Flex gap={2} className='filter-container'>
+      <Flex gap={2}>
         <div className='search-field'> {search.filter}</div>
         <FilterOptions selectedLevel={selectedLevel} selectedLevels={levels} handleLogLevelChange={handleLogLevelChange} />
       </Flex>
