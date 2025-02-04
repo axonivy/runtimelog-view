@@ -19,7 +19,9 @@ export const FilterOptions = ({ selectedLevel, selectedLevels, handleLogLevelCha
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline'>Filters</Button>
+        <Button className='filter-button' variant='outline'>
+          Filters
+        </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>

@@ -12,3 +12,11 @@
 .ui-table-head span {
   font-weight: bold;
 }
+
+.filter-button {
+  width: 10%;
+}
+
+.search-field {
+  width: 90%;
+}
