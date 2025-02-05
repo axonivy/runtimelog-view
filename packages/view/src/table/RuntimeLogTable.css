@@ -17,8 +17,13 @@
   width: 10%;
 }
 
-body > div:nth-child(6) {
-  width: 10%;
+button.filter-button {
+  justify-content: space-between;
+}
+
+.filter-options {
+  padding: 0;
+  font-weight: normal;
 }
 
 .search-field {

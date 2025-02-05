@@ -15,52 +15,45 @@ import { LogRow } from './LogRow';
 import { useMemo, useState } from 'react';
 import { FilterOptions } from './FilterOptions';
 import './RuntimeLogTable.css';
-import './SeverityIcon.css';
 import { levels } from './SeverityIcon';
 
 interface ViewProps {
   runtimeLogViewData: RuntimeLogViewData;
 }
 
-const logLevelIcon = (level: string) => {
-  switch (level) {
-    case 'DEBUG':
-      return levels[0].label;
-    case 'INFO':
-      return levels[1].label;
-    case 'WARN':
-      return levels[2].label;
-    case 'ERROR':
-      return levels[3].label;
-    case 'FATAL':
-      return levels[4].label;
-    default:
-      return levels[1].label;
-  }
+type LogLevel = Exclude<Level, 'OFF' | 'TRACE' | 'ALL'>;
+
+const logLevelIcon = (level: LogLevel) => {
+  const levelMap: Record<LogLevel, JSX.Element> = {
+    DEBUG: levels[0].label,
+    INFO: levels[1].label,
+    WARN: levels[2].label,
+    ERROR: levels[3].label,
+    FATAL: levels[4].label
+  };
+  return levelMap[level] || levels[1].label;
 };
 
 export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
   const sort = useTableSort();
   const search = useTableGlobalFilter();
 
-  const [selectedLevel, setSelectedLevel] = useState<Level>('DEBUG');
+  const [selectedLevel, setSelectedLevel] = useState<LogLevel>('DEBUG');
+  const [isUserLog, setIsUserLog] = useState(false);
 
   const filteredData = useMemo(() => {
-    const levelPriority: Record<Level, number> = {
-      ALL: -1,
+    const levelPriority: Record<LogLevel, number> = {
       DEBUG: 0,
-      TRACE: 0,
       INFO: 1,
       WARN: 2,
       ERROR: 3,
-      FATAL: 4,
-      OFF: 5
+      FATAL: 4
     };
 
-    if (selectedLevel === 'ALL') return runtimeLogViewData.entries;
-
-    return runtimeLogViewData.entries.filter(entry => levelPriority[entry.level] >= levelPriority[selectedLevel]);
-  }, [runtimeLogViewData.entries, selectedLevel]);
+    return runtimeLogViewData.entries
+      .filter(entry => levelPriority[entry.level as LogLevel] >= levelPriority[selectedLevel])
+      .filter(entry => (isUserLog ? entry.category === 'User' : true));
+  }, [runtimeLogViewData.entries, selectedLevel, isUserLog]);
 
   const columns: Array<ColumnDef<RuntimeLogEntryLsp, string>> = [
     {
@@ -68,7 +61,7 @@ export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
       header: ({ column }) => <SortableHeader column={column} name='Type' />,
       cell: cell => (
         <Flex gap={2}>
-          {logLevelIcon(cell.getValue())} {cell.getValue()}
+          {logLevelIcon(cell.getValue() as LogLevel)} {cell.getValue()}
         </Flex>
       ),
       maxSize: 30
@@ -101,15 +94,24 @@ export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
 
   const handleLogLevelChange = (checked: boolean, value: string) => {
     if (checked) {
-      setSelectedLevel(value.toString() as Level);
+      setSelectedLevel(value.toString() as LogLevel);
     }
+  };
+
+  const handleIsUserLogChange = (checked: boolean) => {
+    setIsUserLog(checked);
   };
 
   return (
     <Flex direction='column' gap={2} className='master-content-container'>
       <Flex gap={2}>
         <div className='search-field'> {search.filter}</div>
-        <FilterOptions selectedLevel={selectedLevel} selectedLevels={levels} handleLogLevelChange={handleLogLevelChange} />
+        <FilterOptions
+          selectedLevel={selectedLevel}
+          selectedLevels={levels}
+          handleLogLevelChange={handleLogLevelChange}
+          handelIsUserLogChange={handleIsUserLogChange}
+        />
       </Flex>
 
       <Table style={{ overflowX: 'unset' }}>

@@ -8,32 +8,41 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Field,
+  Flex,
   IvyIcon,
   Label
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useState } from 'react';
 
 interface FilterOptionsProps {
   selectedLevel: string;
   selectedLevels: Array<{ label: JSX.Element; value: string }>;
   handleLogLevelChange: (checked: boolean, level: string) => void;
+  handelIsUserLogChange: (checked: boolean) => void;
 }
 
-export const FilterOptions = ({ selectedLevel, selectedLevels, handleLogLevelChange }: FilterOptionsProps) => {
+export const FilterOptions = ({ selectedLevel, selectedLevels, handleLogLevelChange, handelIsUserLogChange }: FilterOptionsProps) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button className='filter-button' variant='outline'>
-          Filters
+          <Flex gap={2}>
+            <IvyIcon icon={IvyIcons.Filter} />
+            <Label>Filters</Label>
+          </Flex>
+          <IvyIcon icon={IvyIcons.Chevron} style={{ transform: open ? 'rotate(270deg)' : 'rotate(90deg)' }} />
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
         <DropdownMenuLabel>
-          <Field direction='row' alignItems='center' gap={2}>
-            <IvyIcon icon={IvyIcons.InfoCircle} />
+          <Field className='filter-options' direction='row' alignItems='center' gap={2}>
+            <IvyIcon icon={IvyIcons.FilterCog} />
             <Label>Show only User Logs</Label>
-            <Checkbox />
+            <Checkbox onCheckedChange={handelIsUserLogChange} />
           </Field>
         </DropdownMenuLabel>
 

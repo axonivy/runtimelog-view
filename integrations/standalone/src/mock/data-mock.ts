@@ -60,7 +60,7 @@ export const data: RuntimeLogViewData = {
     {
       level: LevelValues.ERROR,
       message: 'Process intermediate event',
-      category: 'User',
+      category: 'runtimelog',
       processElement: '',
       request: '',
       throwableInformationMsg: '',

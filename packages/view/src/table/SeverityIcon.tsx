@@ -1,5 +1,6 @@
 import { IvyIcon } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
+import './SeverityIcon.css';
 
 type Level = { label: JSX.Element; value: string };
 export const levels: Level[] = [
