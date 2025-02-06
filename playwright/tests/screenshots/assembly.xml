@@ -4,9 +4,9 @@
 
   <id>bundle</id>
 
-  <logats>
-    <logat>zip</logat>
-  </logats>
+  <formats>
+    <format>zip</format>
+  </formats>
 
   <includeBaseDirectory>false</includeBaseDirectory>
 
