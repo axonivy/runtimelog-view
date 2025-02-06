@@ -1,6 +1,6 @@
  
-import type { RuntimeLogEntryLsp } from './data/log';
+import type { RuntimeLogViewData } from './data/log';
 
 export interface LogRequestTypes {
-  data: [RuntimeLogEntryLsp, RuntimeLogEntryLsp];
+  data: [RuntimeLogViewData, RuntimeLogViewData];
 }
