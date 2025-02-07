@@ -2,9 +2,10 @@ import {
   Button,
   Checkbox,
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Field,
@@ -13,27 +14,26 @@ import {
   Label
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { useState } from 'react';
+import { type LogLevel } from './RuntimeLogTable';
+import { SeverityIcon } from './SeverityIcon';
+import './FilterOptions.css';
 
 interface FilterOptionsProps {
-  selectedLevel: string;
-  selectedLevels: Array<{ label: JSX.Element; value: string }>;
-  handleLogLevelChange: (checked: boolean, level: string) => void;
+  handleLogLevelChange: (checked: boolean, level: LogLevel) => void;
   handelIsUserLogChange: (checked: boolean) => void;
+  selectedLevel: LogLevel;
 }
 
-export const FilterOptions = ({ selectedLevel, selectedLevels, handleLogLevelChange, handelIsUserLogChange }: FilterOptionsProps) => {
-  const [open, setOpen] = useState(false);
-
+export const FilterOptions = ({ handleLogLevelChange, handelIsUserLogChange, selectedLevel }: FilterOptionsProps) => {
   return (
-    <DropdownMenu open={open} onOpenChange={setOpen}>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button className='filter-button' variant='outline'>
           <Flex gap={2}>
             <IvyIcon icon={IvyIcons.Filter} />
             <Label>Filters</Label>
           </Flex>
-          <IvyIcon icon={IvyIcons.Chevron} style={{ transform: open ? 'rotate(270deg)' : 'rotate(90deg)' }} />
+          <IvyIcon icon={IvyIcons.Chevron} className='chevron' />
         </Button>
       </DropdownMenuTrigger>
 
@@ -46,19 +46,48 @@ export const FilterOptions = ({ selectedLevel, selectedLevels, handleLogLevelCha
           </Field>
         </DropdownMenuLabel>
 
-        {selectedLevels.map(level => (
-          <>
-            <DropdownMenuSeparator aria-orientation='vertical' />
-            <DropdownMenuCheckboxItem
-              key={level.value}
-              checked={selectedLevel === level.value}
-              onCheckedChange={checked => handleLogLevelChange(checked, level.value)}
-            >
-              {level.label}
-              {level.value}
-            </DropdownMenuCheckboxItem>
-          </>
-        ))}
+        <DropdownMenuSeparator aria-orientation='vertical' />
+        <DropdownMenuRadioGroup className='radio-group' onValueChange={value => handleLogLevelChange(true, value as LogLevel)}>
+          <DropdownMenuRadioItem className='radio-item' value='DEBUG'>
+            <Flex gap={2}>
+              <SeverityIcon level='DEBUG' />
+              DEBUG
+            </Flex>
+            {selectedLevel === 'DEBUG' && <IvyIcon icon={IvyIcons.Check} />}
+          </DropdownMenuRadioItem>
+          <DropdownMenuSeparator aria-orientation='vertical' />
+          <DropdownMenuRadioItem className='radio-item' value='INFO'>
+            <Flex gap={2}>
+              <SeverityIcon level='INFO' />
+              INFO
+            </Flex>
+            {selectedLevel === 'INFO' && <IvyIcon icon={IvyIcons.Check} />}
+          </DropdownMenuRadioItem>
+          <DropdownMenuSeparator aria-orientation='vertical' />
+          <DropdownMenuRadioItem className='radio-item' value='WARN'>
+            <Flex gap={2}>
+              <SeverityIcon level='WARN' />
+              WARN
+            </Flex>
+            {selectedLevel === 'WARN' && <IvyIcon icon={IvyIcons.Check} />}
+          </DropdownMenuRadioItem>
+          <DropdownMenuSeparator aria-orientation='vertical' />
+          <DropdownMenuRadioItem className='radio-item' value='ERROR'>
+            <Flex gap={2}>
+              <SeverityIcon level='ERROR' />
+              ERROR
+            </Flex>
+            {selectedLevel === 'ERROR' && <IvyIcon icon={IvyIcons.Check} />}
+          </DropdownMenuRadioItem>
+          <DropdownMenuSeparator aria-orientation='vertical' />
+          <DropdownMenuRadioItem className='radio-item' value='FATAL'>
+            <Flex gap={2}>
+              <SeverityIcon level='FATAL' />
+              FATAL
+            </Flex>
+            {selectedLevel === 'FATAL' && <IvyIcon icon={IvyIcons.Check} />}
+          </DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );

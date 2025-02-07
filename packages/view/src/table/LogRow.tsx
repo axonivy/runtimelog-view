@@ -4,7 +4,6 @@ import type { RuntimeLogEntryLsp } from '@axonivy/log-view-protocol';
 
 type LogRowProps = {
   row: Row<RuntimeLogEntryLsp>;
-  isReorderable: boolean;
 };
 
 export const LogRow = ({ row }: LogRowProps) => {
@@ -12,10 +11,9 @@ export const LogRow = ({ row }: LogRowProps) => {
     .getVisibleCells()
     .map(cell => <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>);
 
-  const commonProps = { id: row.index.toString(), row };
   return (
-    <>
-      <SelectRow {...commonProps}>{tableCell}</SelectRow>
-    </>
+    <SelectRow id={row.index.toString()} row={row}>
+      {tableCell}
+    </SelectRow>
   );
 };

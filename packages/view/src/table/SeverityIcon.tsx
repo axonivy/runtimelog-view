@@ -1,27 +1,18 @@
 import { IvyIcon } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import './SeverityIcon.css';
+import type { Level } from '@axonivy/log-view-protocol';
 
-type Level = { label: JSX.Element; value: string };
-export const levels: Level[] = [
-  {
-    label: <IvyIcon className='icon-wrapper debug' icon={IvyIcons.Tool} />,
-    value: 'DEBUG'
-  },
-  {
-    label: <IvyIcon className='icon-wrapper info' icon={IvyIcons.InfoCircle} />,
-    value: 'INFO'
-  },
-  {
-    label: <IvyIcon className='icon-wrapper warn' icon={IvyIcons.Caution} />,
-    value: 'WARN'
-  },
-  {
-    label: <IvyIcon className='icon-wrapper error' icon={IvyIcons.ErrorXMark} />,
-    value: 'ERROR'
-  },
-  {
-    label: <IvyIcon className='icon-wrapper fatal' icon={IvyIcons.Error} />,
-    value: 'FATAL'
-  }
-];
+type LogLevel = Exclude<Level, 'OFF' | 'TRACE' | 'ALL'>;
+
+const icons: Record<LogLevel, IvyIcons> = {
+  DEBUG: IvyIcons.Tool,
+  INFO: IvyIcons.InfoCircle,
+  WARN: IvyIcons.Caution,
+  ERROR: IvyIcons.ErrorXMark,
+  FATAL: IvyIcons.Error
+};
+
+export const SeverityIcon = ({ level }: { level: LogLevel }) => (
+  <IvyIcon className={`icon-wrapper ${level.toLowerCase()}`} icon={icons[level] || IvyIcons.InfoCircle} />
+);

@@ -3,7 +3,7 @@ import { View } from './view/View';
 import './App.css';
 
 function App(props: RuntimeLogViewData) {
-  return <View runtimeLogViewData={props} />;
+  return <View {...props} />;
 }
 
 export default App;

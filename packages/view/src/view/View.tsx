@@ -1,23 +1,31 @@
-import type { RuntimeLogViewData } from '@axonivy/log-view-protocol';
-import React from 'react';
 import './View.css';
-import { Flex, ResizablePanel, ResizablePanelGroup } from '@axonivy/ui-components';
+import { Flex } from '@axonivy/ui-components';
 import { RuntimeLogTable } from './../table/RuntimeLogTable';
+import { useClient } from '../context/ClientContext';
+import { useQuery } from '@tanstack/react-query';
+import { useMemo, useState } from 'react';
+import { genQueryKey } from '../query/query-client';
+import type { RuntimeLogViewData } from '@axonivy/log-view-protocol';
 
-interface ViewProps {
-  runtimeLogViewData: RuntimeLogViewData;
-}
+export const View = (props: RuntimeLogViewData) => {
+  const [context] = useState(props);
+  const client = useClient();
 
-export const View: React.FC<ViewProps> = ({ runtimeLogViewData }) => {
+  const queryKeys = useMemo(() => {
+    return {
+      data: (context: RuntimeLogViewData) => genQueryKey('data', context)
+    };
+  }, []);
+
+  const { data } = useQuery({
+    queryKey: queryKeys.data(context),
+    queryFn: () => client.data(context),
+    structuralSharing: false
+  });
+
   return (
-    <>
-      <ResizablePanelGroup direction='horizontal' style={{ height: `100vh` }}>
-        <ResizablePanel defaultSize={75} minSize={50} className='master-panel'>
-          <Flex className='panel-content-container master-container' direction='column'>
-            <RuntimeLogTable runtimeLogViewData={runtimeLogViewData} />
-          </Flex>
-        </ResizablePanel>
-      </ResizablePanelGroup>
-    </>
+    <Flex className='panel-content-container master-container' direction='column'>
+      {data && <RuntimeLogTable runtimeLogViewData={data} />}
+    </Flex>
   );
 };

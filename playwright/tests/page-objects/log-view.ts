@@ -1,4 +1,5 @@
 import type { Page } from '@playwright/test';
+import { logFilter } from './logFilter';
 
 export const testLog = 'src_hd/log/test/project/test/test';
 export const server = process.env.BASE_URL ?? 'http://localhost:8081';
@@ -20,5 +21,9 @@ export class LogView {
 
   static async openMock(page: Page) {
     return await this.open(page, 'mock.html');
+  }
+
+  get logFilter() {
+    return new logFilter(this.page);
   }
 }

@@ -4,37 +4,6 @@
   overflow: auto;
 }
 
-.master-content {
-  min-height: 0;
-  height: fit-content;
-}
-
-.ui-table-head span {
-  font-weight: bold;
-}
-
-.filter-button {
-  width: 10%;
-}
-
-button.filter-button {
-  justify-content: space-between;
-}
-
-.filter-options {
-  padding: 0;
-  font-weight: normal;
-}
-
 .search-field {
-  width: 90%;
-}
-
-.ui-table-body tr td {
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-}
-
-.ui-table-body tr td div {
-  align-items: center;
+  flex: 1;
 }
