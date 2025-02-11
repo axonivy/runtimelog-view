@@ -1,0 +1,9 @@
+.master-content-container {
+  height: 100%;
+  padding: var(--size-3);
+  overflow: auto;
+}
+
+.search-field {
+  flex: 1;
+}

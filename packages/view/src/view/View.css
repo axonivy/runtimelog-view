@@ -1,0 +1,12 @@
+@layer icons;
+
+@import '@axonivy/ui-icons/src-gen/ivy-icons.css' layer(icons);
+@import '@axonivy/ui-components/lib/components.css';
+
+.master-panel {
+  background-color: var(--N75);
+}
+
+.panel-content-container {
+  height: 100%;
+}
