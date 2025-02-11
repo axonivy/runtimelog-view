@@ -19,7 +19,7 @@ export class LogClientJsonRpc extends BaseRpcClient implements LogClient {
   }
 
   public static webSocketUrl(url: string) {
-    return urlBuilder(url, 'ivy-log-lsp');
+    return urlBuilder(url, 'ivy-runtime-log-lsp');
   }
 
   public static async startClient(connection: Connection): Promise<LogClientJsonRpc> {
