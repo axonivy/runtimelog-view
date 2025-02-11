@@ -3,17 +3,17 @@ import { Flex } from '@axonivy/ui-components';
 import { RuntimeLogTable } from './../table/RuntimeLogTable';
 import { useClient } from '../context/ClientContext';
 import { useQuery } from '@tanstack/react-query';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { genQueryKey } from '../query/query-client';
-import type { RuntimeLogViewData } from '@axonivy/log-view-protocol';
+import type { RuntimeLogContext } from '@axonivy/log-view-protocol';
 
-export const View = (props: RuntimeLogViewData) => {
-  const [context] = useState(props);
+export const View = (props: RuntimeLogContext) => {
+  const context = useMemo(() => props, [props]);
   const client = useClient();
 
   const queryKeys = useMemo(() => {
     return {
-      data: (context: RuntimeLogViewData) => genQueryKey('data', context)
+      data: (context: RuntimeLogContext) => genQueryKey('data', context)
     };
   }, []);
 

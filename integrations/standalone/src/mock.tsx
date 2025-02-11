@@ -5,7 +5,6 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { LogClientMock } from './mock/log-client-mock';
 import { readonlyParam } from './url-helper';
-import { data } from './mock/data-mock';
 
 export function start() {
   const logClient = new LogClientMock();
@@ -23,7 +22,7 @@ export function start() {
           <QueryProvider client={queryClient}>
             <ReadonlyProvider readonly={readonly}>
               <HotkeysProvider initiallyActiveScopes={['global']}>
-                <App entries={data.entries} />
+                <App app={''} pmv={''} />
               </HotkeysProvider>
             </ReadonlyProvider>
           </QueryProvider>

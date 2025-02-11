@@ -18,7 +18,7 @@ export class logFilter {
     await this.page.getByRole('menuitemradio').getByText(label).click();
   }
 
-  async filterUser() {
+  async filterUserLogs() {
     await this.openFilter();
     await this.page.getByRole('checkbox', { name: 'Show only User Logs' }).click();
   }

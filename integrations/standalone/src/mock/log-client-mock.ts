@@ -5,6 +5,7 @@ import  { data }from './data-mock';
 
 export class LogClientMock implements LogClient {
   private logData: RuntimeLogViewData = {
+    context: { app: 'mock', pmv: 'mock' },
     entries: data.entries
   };
 

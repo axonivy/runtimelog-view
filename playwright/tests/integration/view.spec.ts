@@ -25,7 +25,7 @@ test.describe('DataTable filter & sorting', () => {
     const view = await LogView.openMock(page);
     const rows = page.locator('table tbody tr');
     await expect(rows).toHaveCount(7);
-    view.logFilter.filterUser();
+    view.logFilter.filterUserLogs();
     await expect(rows).toHaveCount(4);
   });
 
@@ -34,7 +34,7 @@ test.describe('DataTable filter & sorting', () => {
     view.logFilter.changeFilter('ERROR');
     const rows = page.locator('table tbody tr');
     await expect(rows).toHaveCount(4);
-    view.logFilter.filterUser();
+    view.logFilter.filterUserLogs();
     await expect(rows).toHaveCount(1);
   });
 

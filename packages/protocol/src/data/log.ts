@@ -15,6 +15,12 @@ export interface RuntimeLogViewData {
   entries: RuntimeLogEntryLsp[];
   [k: string]: unknown;
 }
+
+export interface RuntimeLogContext {
+  app: string;
+  pmv: string;
+}
+
 export interface RuntimeLogEntryLsp {
   category: string;
   level: Level;
