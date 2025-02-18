@@ -4,19 +4,11 @@ export function parameter(key: string): string | undefined {
 }
 
 export function appParam(): string {
-  return parameter('app') ?? '';
+  return parameter('app') ?? 'designer';
 }
 
 export function pmvParam(): string {
   return parameter('pmv') ?? '';
-}
-
-export function fileParam(): string {
-  return parameter('file') ?? '';
-}
-
-export function directSaveParam(): boolean {
-  return parameter('directSave') !== undefined;
 }
 
 export function themeParam(): 'dark' | 'light' {
