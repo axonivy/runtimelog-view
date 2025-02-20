@@ -22,7 +22,7 @@ export const data: RuntimeLogViewData = {
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
       userDialogId: 'null',
-      project: 'portal'
+      project: 'Portal'
     },
     {
       level: LevelValues.WARN,
@@ -33,7 +33,7 @@ export const data: RuntimeLogViewData = {
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
       userDialogId: 'null',
-      project: 'portal'
+      project: 'Runtime'
     },
     {
       level: LevelValues.ERROR,
@@ -44,7 +44,7 @@ export const data: RuntimeLogViewData = {
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
       userDialogId: 'null',
-      project: 'portal'
+      project: 'Portal'
     },
     {
       level: LevelValues.ERROR,
@@ -55,7 +55,7 @@ export const data: RuntimeLogViewData = {
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
       userDialogId: 'null',
-      project: 'portal'
+      project: 'Conectivity'
     },
     {
       level: LevelValues.ERROR,
@@ -77,7 +77,7 @@ export const data: RuntimeLogViewData = {
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
       userDialogId: 'null',
-      project: 'Process-inspector'
+      project: 'Engine'
     },
     {
       level: LevelValues.DEBUG,
@@ -88,7 +88,7 @@ export const data: RuntimeLogViewData = {
       throwableInformationMsg: '',
       timestamp: 'Wed Jan 22 16:11:52 CET 2025',
       userDialogId: 'null',
-      project: 'Process-inspector'
+      project: 'Neo'
     }
   ]
 };

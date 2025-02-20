@@ -22,4 +22,10 @@ export class logFilter {
     await this.openFilter();
     await this.page.getByRole('checkbox', { name: 'Show only User Logs' }).click();
   }
+
+  async filterProject(project: string) {
+    await this.openFilter();
+    await this.page.getByRole('menuitem', { name: 'Project' }).click();
+    await this.page.getByRole('menuitem', { name: project }).getByRole('checkbox').click();
+  }
 }

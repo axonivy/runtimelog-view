@@ -7,3 +7,7 @@
 .search-field {
   flex: 1;
 }
+
+.severity {
+  align-items: center;
+}
