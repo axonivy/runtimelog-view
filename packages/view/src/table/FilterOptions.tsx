@@ -3,10 +3,13 @@ import {
   Checkbox,
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
   Field,
   Flex,
@@ -15,16 +18,26 @@ import {
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { type LogLevel } from './RuntimeLogTable';
-import { SeverityIcon } from './SeverityIcon';
 import './FilterOptions.css';
+import { FilterSerenities } from './FilterSerenities';
 
 interface FilterOptionsProps {
   handleLogLevelChange: (checked: boolean, level: LogLevel) => void;
-  handelIsUserLogChange: (checked: boolean) => void;
+  handleIsUserLogChange: (checked: boolean) => void;
   selectedLevel: LogLevel;
+  handleProjectFilterChange: (checked: string[]) => void;
+  projects: string[];
+  selectedProjects: string[];
 }
 
-export const FilterOptions = ({ handleLogLevelChange, handelIsUserLogChange, selectedLevel }: FilterOptionsProps) => {
+export const FilterOptions = ({
+  handleLogLevelChange,
+  handleIsUserLogChange,
+  handleProjectFilterChange,
+  projects,
+  selectedProjects,
+  selectedLevel
+}: FilterOptionsProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -42,51 +55,40 @@ export const FilterOptions = ({ handleLogLevelChange, handelIsUserLogChange, sel
           <Field className='filter-options' direction='row' alignItems='center' gap={2}>
             <IvyIcon icon={IvyIcons.FilterCog} />
             <Label>Show only User Logs</Label>
-            <Checkbox onCheckedChange={handelIsUserLogChange} />
+            <Checkbox onCheckedChange={handleIsUserLogChange} />
           </Field>
         </DropdownMenuLabel>
+        <DropdownMenuSeparator />
 
-        <DropdownMenuSeparator aria-orientation='vertical' />
+        {projects.length > 0 && (
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>
+              <IvyIcon className='icon-wrapper project' icon={IvyIcons.Folders} />
+              <Label>Project</Label>
+            </DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              {projects.map((project, index) => (
+                <DropdownMenuItem className='project-dropdown' key={index}>
+                  <Label>{project}</Label>
+                  <Checkbox
+                    checked={selectedProjects.includes(project)}
+                    onCheckedChange={(checked: boolean) => {
+                      handleProjectFilterChange(checked ? [...selectedProjects, project] : selectedProjects.filter(p => p !== project));
+                    }}
+                  />
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+        )}
+
+        <DropdownMenuSeparator />
         <DropdownMenuRadioGroup className='radio-group' onValueChange={value => handleLogLevelChange(true, value as LogLevel)}>
-          <DropdownMenuRadioItem className='radio-item' value='DEBUG'>
-            <Flex gap={2}>
-              <SeverityIcon level='DEBUG' />
-              DEBUG
-            </Flex>
-            {selectedLevel === 'DEBUG' && <IvyIcon icon={IvyIcons.Check} />}
-          </DropdownMenuRadioItem>
-          <DropdownMenuSeparator aria-orientation='vertical' />
-          <DropdownMenuRadioItem className='radio-item' value='INFO'>
-            <Flex gap={2}>
-              <SeverityIcon level='INFO' />
-              INFO
-            </Flex>
-            {selectedLevel === 'INFO' && <IvyIcon icon={IvyIcons.Check} />}
-          </DropdownMenuRadioItem>
-          <DropdownMenuSeparator aria-orientation='vertical' />
-          <DropdownMenuRadioItem className='radio-item' value='WARN'>
-            <Flex gap={2}>
-              <SeverityIcon level='WARN' />
-              WARN
-            </Flex>
-            {selectedLevel === 'WARN' && <IvyIcon icon={IvyIcons.Check} />}
-          </DropdownMenuRadioItem>
-          <DropdownMenuSeparator aria-orientation='vertical' />
-          <DropdownMenuRadioItem className='radio-item' value='ERROR'>
-            <Flex gap={2}>
-              <SeverityIcon level='ERROR' />
-              ERROR
-            </Flex>
-            {selectedLevel === 'ERROR' && <IvyIcon icon={IvyIcons.Check} />}
-          </DropdownMenuRadioItem>
-          <DropdownMenuSeparator aria-orientation='vertical' />
-          <DropdownMenuRadioItem className='radio-item' value='FATAL'>
-            <Flex gap={2}>
-              <SeverityIcon level='FATAL' />
-              FATAL
-            </Flex>
-            {selectedLevel === 'FATAL' && <IvyIcon icon={IvyIcons.Check} />}
-          </DropdownMenuRadioItem>
+          <FilterSerenities selectedLevel={selectedLevel} level='DEBUG' />
+          <FilterSerenities selectedLevel={selectedLevel} level='INFO' />
+          <FilterSerenities selectedLevel={selectedLevel} level='WARN' />
+          <FilterSerenities selectedLevel={selectedLevel} level='ERROR' />
+          <FilterSerenities selectedLevel={selectedLevel} level='FATAL' />
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

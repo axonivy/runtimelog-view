@@ -30,6 +30,14 @@ export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
 
   const [selectedLevel, setSelectedLevel] = useState<LogLevel>('DEBUG');
   const [isUserLog, setIsUserLog] = useState(false);
+  const [selectedProjects, setSelectedProjects] = useState<string[]>([]);
+
+  const projectList = useMemo(() => (
+    Array.from(new Set(runtimeLogViewData.entries
+      .map(entry => entry.project)
+      .filter(project => project !== null && project !== '')
+    ))
+  ), [runtimeLogViewData.entries]);
 
   const filteredData = useMemo(() => {
     const levelPriority: Record<LogLevel, number> = {
@@ -41,16 +49,17 @@ export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
     };
 
     return runtimeLogViewData.entries
+      .filter(entry => selectedProjects.length === 0 || selectedProjects.includes(entry.project))
       .filter(entry => levelPriority[entry.level as LogLevel] >= levelPriority[selectedLevel])
       .filter(entry => (isUserLog ? entry.category === 'User' : true));
-  }, [runtimeLogViewData.entries, selectedLevel, isUserLog]);
+  }, [runtimeLogViewData.entries, selectedLevel, isUserLog, selectedProjects]);
 
   const columns: Array<ColumnDef<RuntimeLogEntryLsp, string>> = [
     {
       accessorKey: 'level',
       header: ({ column }) => <SortableHeader column={column} name='Type' />,
       cell: cell => (
-        <Flex gap={2}>
+        <Flex className='severity' gap={2}>
           <SeverityIcon level={cell.getValue() as LogLevel} />
           <Label>{cell.getValue()}</Label>
         </Flex>
@@ -93,7 +102,14 @@ export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
     <Flex direction='column' gap={2} className='master-content-container'>
       <Flex gap={2}>
         <div className='search-field'>{search.filter}</div>
-        <FilterOptions selectedLevel={selectedLevel} handleLogLevelChange={handleLogLevelChange} handelIsUserLogChange={setIsUserLog} />
+        <FilterOptions
+          handleProjectFilterChange={setSelectedProjects}
+          selectedProjects={selectedProjects}
+          selectedLevel={selectedLevel}
+          handleLogLevelChange={handleLogLevelChange}
+          handleIsUserLogChange={setIsUserLog}
+          projects={projectList}
+        />
       </Flex>
 
       <Table style={{ overflowX: 'unset' }}>

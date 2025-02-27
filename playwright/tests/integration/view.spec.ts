@@ -29,6 +29,13 @@ test.describe('DataTable filter & sorting', () => {
     await expect(rows).toHaveCount(4);
   });
 
+  test('should filter rows by Project', async ({ page }) => {
+    const view = await LogView.openMock(page);
+    view.logFilter.filterProject('portal');
+    const rows = page.locator('table tbody tr');
+    await expect(rows).toHaveCount(2);
+  });
+
   test('should filter rows by log level and user logs', async ({ page }) => {
     const view = await LogView.openMock(page);
     view.logFilter.changeFilter('ERROR');
