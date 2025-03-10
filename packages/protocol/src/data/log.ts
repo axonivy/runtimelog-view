@@ -10,6 +10,7 @@ export type Level = ("OFF" | "FATAL" | "ERROR" | "WARN" | "INFO" | "DEBUG" | "TR
 export interface Logs {
   runtimeLogContext: RuntimeLogContext;
   runtimeLogViewData: RuntimeLogViewData;
+  void: Void;
   [k: string]: unknown;
 }
 export interface RuntimeLogContext {
@@ -31,5 +32,8 @@ export interface RuntimeLogEntryLsp {
   throwableInformationMsg: string;
   timestamp: string;
   userDialogId: string;
+  [k: string]: unknown;
+}
+export interface Void {
   [k: string]: unknown;
 }

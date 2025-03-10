@@ -1,6 +1,13 @@
 import type { Level, RuntimeLogEntryLsp, RuntimeLogViewData } from '@axonivy/log-view-protocol';
 import {
+  Button,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
   Flex,
+  IvyIcon,
   Label,
   selectRow,
   SortableHeader,
@@ -17,14 +24,16 @@ import { useMemo, useState } from 'react';
 import { FilterOptions } from './FilterOptions';
 import './RuntimeLogTable.css';
 import { SeverityIcon } from './SeverityIcon';
+import { IvyIcons } from '@axonivy/ui-icons';
 
 interface ViewProps {
   runtimeLogViewData: RuntimeLogViewData;
+  clearlogs: () => void;
 }
 
 export type LogLevel = Exclude<Level, 'OFF' | 'TRACE' | 'ALL'>;
 
-export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
+export const RuntimeLogTable = ({ runtimeLogViewData, clearlogs }: ViewProps) => {
   const sort = useTableSort();
   const search = useTableGlobalFilter();
 
@@ -110,6 +119,21 @@ export const RuntimeLogTable = ({ runtimeLogViewData }: ViewProps) => {
           handleIsUserLogChange={setIsUserLog}
           projects={projectList}
         />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button>
+              <IvyIcon icon={IvyIcons.Dots} />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuGroup>
+              <DropdownMenuItem onClick={clearlogs} className='dropdown-delete'>
+                <IvyIcon icon={IvyIcons.Trash} />
+                <Label>Delete All</Label>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </Flex>
 
       <Table style={{ overflowX: 'unset' }}>

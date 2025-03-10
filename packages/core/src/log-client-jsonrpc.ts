@@ -14,6 +14,10 @@ export class LogClientJsonRpc extends BaseRpcClient implements LogClient {
     return this.sendRequest('data', context);
   }
 
+  clear(context: RuntimeLogContext): void {
+    this.sendRequest('clear', context);
+  }
+  
   sendRequest<K extends keyof LogRequestTypes>(command: K, args?: LogRequestTypes[K][0]): Promise<LogRequestTypes[K][1]> {
     return args === undefined ? this.connection.sendRequest(command) : this.connection.sendRequest(command, args);
   }

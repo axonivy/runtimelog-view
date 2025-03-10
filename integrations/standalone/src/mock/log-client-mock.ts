@@ -2,7 +2,6 @@ import type { LogClient, RuntimeLogViewData } from '@axonivy/log-view-protocol';
 import { Emitter } from '@axonivy/jsonrpc';
 import  { data }from './data-mock';
 
-
 export class LogClientMock implements LogClient {
   private logData: RuntimeLogViewData = {
     context: { app: 'mock', pmv: 'mock' },
@@ -16,5 +15,9 @@ export class LogClientMock implements LogClient {
 
   data(): Promise<RuntimeLogViewData> {
     return Promise.resolve(this.logData);
+  }
+
+  clear(): void {
+    this.logData.entries = [];
   }
 }
