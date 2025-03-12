@@ -1,7 +1,7 @@
 import { devices, defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  timeout: 1000 * (process.env.CI ? 60 : 30),
+  timeout: 1000 * (process.env.CI ? 20 : 10),
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
@@ -17,8 +17,6 @@ export default defineConfig({
     url: process.env.CI ? 'http://localhost:4173' : 'http://localhost:3000',
     reuseExistingServer: !process.env.CI
   },
-  globalSetup: './tests/global.setup',
-  globalTeardown: './tests/global.teardown',
   projects: [
     { name: 'integration-chrome', use: { ...devices['Desktop Chrome'] }, testDir: './tests/integration' },
     { name: 'integration-firefox', use: { ...devices['Desktop Firefox'] }, testDir: './tests/integration' },

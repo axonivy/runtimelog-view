@@ -16,7 +16,7 @@ test('should render table and rows correctly', async ({ page }) => {
 test.describe('DataTable filter & sorting', () => {
   test('should filter rows by log level', async ({ page }) => {
     const view = await LogView.openMock(page);
-    view.logFilter.changeFilter('ERROR');
+    await view.logFilter.changeFilter('ERROR');
     const rows = page.locator('table tbody tr');
     await expect(rows).toHaveCount(4);
   });
@@ -25,23 +25,23 @@ test.describe('DataTable filter & sorting', () => {
     const view = await LogView.openMock(page);
     const rows = page.locator('table tbody tr');
     await expect(rows).toHaveCount(7);
-    view.logFilter.filterUserLogs();
+    await view.logFilter.filterUserLogs();
     await expect(rows).toHaveCount(4);
   });
 
   test('should filter rows by Project', async ({ page }) => {
     const view = await LogView.openMock(page);
-    view.logFilter.filterProject('portal');
+    await view.logFilter.filterProject('Portal');
     const rows = page.locator('table tbody tr');
     await expect(rows).toHaveCount(2);
   });
 
   test('should filter rows by log level and user logs', async ({ page }) => {
     const view = await LogView.openMock(page);
-    view.logFilter.changeFilter('ERROR');
+    await view.logFilter.changeFilter('ERROR');
     const rows = page.locator('table tbody tr');
     await expect(rows).toHaveCount(4);
-    view.logFilter.filterUserLogs();
+    await view.logFilter.filterUserLogs();
     await expect(rows).toHaveCount(1);
   });
 
@@ -58,10 +58,9 @@ test.describe('DataTable filter & sorting', () => {
     const rows = page.locator('table tbody tr');
     await expect(rows).toHaveCount(7);
 
-    await page.getByRole('button', {name: 'Menu'}).click();
+    await page.getByRole('button', { name: 'Menu' }).click();
     await page.getByRole('menuitem', { name: 'Delete All' }).click();
 
     await expect(rows).toHaveCount(0);
   });
-
 });
