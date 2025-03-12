@@ -121,7 +121,7 @@ export const RuntimeLogTable = ({ runtimeLogViewData, clearlogs }: ViewProps) =>
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button>
+            <Button title='Menu' aria-label='Menu'>
               <IvyIcon icon={IvyIcons.Dots} />
             </Button>
           </DropdownMenuTrigger>
