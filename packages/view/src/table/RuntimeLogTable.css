@@ -11,3 +11,7 @@
 .severity {
   align-items: center;
 }
+
+.dropdown-delete {
+  color: var(--error-color); 
+}

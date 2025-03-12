@@ -11,4 +11,5 @@ export interface Disposable {
 
 export interface LogClient {
   data(context: RuntimeLogContext): Promise<RuntimeLogViewData>;
+  clear(context: RuntimeLogContext): void;
 }
