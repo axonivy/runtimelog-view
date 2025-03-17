@@ -25,7 +25,9 @@ export class logFilter {
 
   async filterProject(project: string) {
     await this.openFilter();
-    await this.page.getByRole('menuitem', { name: 'Project' }).click();
-    await this.page.getByRole('menuitem', { name: project }).getByRole('checkbox').click();
+    await this.page.getByRole('menuitem', { name: 'Project' }).focus();
+    await this.page.keyboard.press('Enter');
+    await this.page.getByRole('menuitemcheckbox', { name: project }).focus();
+    await this.page.keyboard.press('Enter');
   }
 }
