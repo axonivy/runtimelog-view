@@ -2,8 +2,8 @@ import {
   Button,
   Checkbox,
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuSeparator,
@@ -60,27 +60,27 @@ export const FilterOptions = ({
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
 
-        {projects.length > 0 && (
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
-              <IvyIcon className='icon-wrapper project' icon={IvyIcons.Folders} />
-              <Label>Project</Label>
-            </DropdownMenuSubTrigger>
-            <DropdownMenuSubContent>
-              {projects.map((project, index) => (
-                <DropdownMenuItem className='project-dropdown' key={index}>
-                  <Label>{project}</Label>
-                  <Checkbox
-                    checked={selectedProjects.includes(project)}
-                    onCheckedChange={(checked: boolean) => {
-                      handleProjectFilterChange(checked ? [...selectedProjects, project] : selectedProjects.filter(p => p !== project));
-                    }}
-                  />
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuSubContent>
-          </DropdownMenuSub>
-        )}
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger disabled={projects.length === 0}>
+            <IvyIcon className='icon-wrapper project' icon={IvyIcons.Folders} />
+            <Label>Project</Label>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            {projects.map(project => (
+              <DropdownMenuCheckboxItem
+                className='project-dropdown'
+                key={project}
+                checked={selectedProjects.includes(project)}
+                onCheckedChange={(checked: boolean) =>
+                  handleProjectFilterChange(checked ? [...selectedProjects, project] : selectedProjects.filter(p => p !== project))
+                }
+                onSelect={e => e.preventDefault()}
+              >
+                {project}
+              </DropdownMenuCheckboxItem>
+            ))}
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
 
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup className='radio-group' onValueChange={value => handleLogLevelChange(true, value as LogLevel)}>
