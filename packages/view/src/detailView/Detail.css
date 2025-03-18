@@ -1,0 +1,13 @@
+.close-detail-view {
+  height: 2.5em;
+  opacity: 0.5;
+}
+
+.detail-view-key {
+  font-weight: bold;
+  width: 25%;
+}
+
+.detail-view-row {
+  height: 3em;
+}
