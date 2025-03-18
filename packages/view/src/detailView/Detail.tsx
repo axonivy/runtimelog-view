@@ -1,7 +1,8 @@
 import type { RuntimeLogEntryLsp } from '@axonivy/log-view-protocol';
-import { Button, Flex, IvyIcon, Label, Table, TableBody, TableCell, TableRow } from '@axonivy/ui-components';
+import { Button, Flex } from '@axonivy/ui-components';
 import './Detail.css';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { LogEntryDetail } from './LogEntryDetail';
 
 interface ViewProps {
   RuntimeLogEntry: RuntimeLogEntryLsp;
@@ -9,33 +10,24 @@ interface ViewProps {
 }
 
 export const Detail = ({ RuntimeLogEntry, CloseDetailView }: ViewProps) => {
-  const logEntries = {
-    Time: RuntimeLogEntry.timestamp,
-    Request: RuntimeLogEntry.request,
-    UserDialog: RuntimeLogEntry.userDialogId,
-    Severity: RuntimeLogEntry.level,
-    Category: RuntimeLogEntry.category,
-    Project: RuntimeLogEntry.project,
-    Message: RuntimeLogEntry.message
-  };
   return (
-    <Flex direction='column' gap={2} className='master-content-container'>
+    <Flex direction='column' gap={2} className='master-content-container detail-view'>
       <Flex direction='row' gap={2}>
-        <Button className='close-detail-view' onClick={() => CloseDetailView()}>
-          <IvyIcon icon={IvyIcons.Close} />
-          <Label>Close</Label>
+        <Button onClick={() => CloseDetailView()} icon={IvyIcons.Close}>
+          Close
         </Button>
       </Flex>
-      <Table aria-label='detail-view-table'>
-        <TableBody>
-          {Object.entries(logEntries).map(([key, value]) => (
-            <TableRow className='detail-view-row' key={key}>
-              <TableCell className='detail-view-key'>{key}</TableCell>
-              <TableCell>{value}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+
+      <LogEntryDetail label='Time' value={RuntimeLogEntry.timestamp} />
+      <LogEntryDetail label='Request' value={RuntimeLogEntry.request} />
+      <LogEntryDetail label='User Dialog' value={RuntimeLogEntry.userDialogId} />
+
+      <Flex gap={2} direction='row'>
+        <LogEntryDetail label='Level' value={RuntimeLogEntry.level} />
+        <LogEntryDetail label='Category' value={RuntimeLogEntry.category} />
+      </Flex>
+
+      <LogEntryDetail label='Message / Stack' value={RuntimeLogEntry.message} />
     </Flex>
   );
 };

@@ -31,14 +31,10 @@ export const View = (props: RuntimeLogContext) => {
     queryClient.setQueryData(queryKeys.data(context), { context, entries: [] });
   };
 
-  const handleRowClick = (rowData: RuntimeLogEntryLsp) => {
-    setSelectedRow(rowData);
-  };
-
   return (
     <ResizablePanelGroup direction='horizontal'>
       <ResizablePanel defaultSize={75} minSize={20}>
-        {data && <RuntimeLogTable clearlogs={handleClearLogs} runtimeLogViewData={data} onRowClick={handleRowClick} />}
+        {data && <RuntimeLogTable clearlogs={handleClearLogs} runtimeLogViewData={data} onRowClick={rowData => setSelectedRow(rowData)} />}
       </ResizablePanel>
 
       <ResizableHandle />
