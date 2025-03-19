@@ -29,11 +29,12 @@ import { IvyIcons } from '@axonivy/ui-icons';
 interface ViewProps {
   runtimeLogViewData: RuntimeLogViewData;
   clearlogs: () => void;
+  onRowClick: (rowData: RuntimeLogEntryLsp) => void;
 }
 
 export type LogLevel = Exclude<Level, 'OFF' | 'TRACE' | 'ALL'>;
 
-export const RuntimeLogTable = ({ runtimeLogViewData, clearlogs }: ViewProps) => {
+export const RuntimeLogTable = ({ runtimeLogViewData, clearlogs, onRowClick }: ViewProps) => {
   const sort = useTableSort();
   const search = useTableGlobalFilter();
 
@@ -140,7 +141,7 @@ export const RuntimeLogTable = ({ runtimeLogViewData, clearlogs }: ViewProps) =>
         <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => selectRow(table)} />
         <TableBody>
           {table.getRowModel().rows.map(row => (
-            <LogRow key={row.id} row={row} />
+            <LogRow key={row.id} row={row} onRowClick={onRowClick} />
           ))}
         </TableBody>
       </Table>

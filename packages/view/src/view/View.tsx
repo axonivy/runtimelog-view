@@ -1,16 +1,18 @@
 import './View.css';
-import { Flex } from '@axonivy/ui-components';
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@axonivy/ui-components';
 import { RuntimeLogTable } from './../table/RuntimeLogTable';
+import { Detail } from './../detailView/Detail';
 import { useClient } from '../context/ClientContext';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { genQueryKey } from '../query/query-client';
-import type { RuntimeLogContext } from '@axonivy/log-view-protocol';
+import type { RuntimeLogContext, RuntimeLogEntryLsp } from '@axonivy/log-view-protocol';
 
 export const View = (props: RuntimeLogContext) => {
   const context = useMemo(() => props, [props]);
   const client = useClient();
   const queryClient = useQueryClient();
+  const [selectedRow, setSelectedRow] = useState<RuntimeLogEntryLsp | null>(null);
 
   const queryKeys = useMemo(() => {
     return {
@@ -30,8 +32,17 @@ export const View = (props: RuntimeLogContext) => {
   };
 
   return (
-    <Flex className='panel-content-container master-container' direction='column'>
-      {data && <RuntimeLogTable clearlogs={handleClearLogs} runtimeLogViewData={data} />}
-    </Flex>
+    <ResizablePanelGroup direction='horizontal'>
+      <ResizablePanel defaultSize={75} minSize={20}>
+        {data && <RuntimeLogTable clearlogs={handleClearLogs} runtimeLogViewData={data} onRowClick={rowData => setSelectedRow(rowData)} />}
+      </ResizablePanel>
+
+      <ResizableHandle />
+      {selectedRow && (
+        <ResizablePanel defaultSize={25} minSize={10}>
+          <Detail RuntimeLogEntry={selectedRow} CloseDetailView={() => setSelectedRow(null)} />
+        </ResizablePanel>
+      )}
+    </ResizablePanelGroup>
   );
 };
