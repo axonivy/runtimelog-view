@@ -8,14 +8,8 @@
 export type Level = ("OFF" | "FATAL" | "ERROR" | "WARN" | "INFO" | "DEBUG" | "TRACE" | "ALL")
 
 export interface Logs {
-  runtimeLogContext: RuntimeLogContext;
   runtimeLogViewData: RuntimeLogViewData;
   void: Void;
-  [k: string]: unknown;
-}
-export interface RuntimeLogContext {
-  app: string;
-  pmv: string;
   [k: string]: unknown;
 }
 export interface RuntimeLogViewData {

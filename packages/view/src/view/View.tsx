@@ -6,29 +6,28 @@ import { useClient } from '../context/ClientContext';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { genQueryKey } from '../query/query-client';
-import type { RuntimeLogContext, RuntimeLogEntryLsp } from '@axonivy/log-view-protocol';
+import type { RuntimeLogEntryLsp } from '@axonivy/log-view-protocol';
 
-export const View = (props: RuntimeLogContext) => {
-  const context = useMemo(() => props, [props]);
+export const View = () => {
   const client = useClient();
   const queryClient = useQueryClient();
   const [selectedRow, setSelectedRow] = useState<RuntimeLogEntryLsp | null>(null);
 
   const queryKeys = useMemo(() => {
     return {
-      data: (context: RuntimeLogContext) => genQueryKey('data', context)
+      data: () => genQueryKey('data')
     };
   }, []);
 
   const { data } = useQuery({
-    queryKey: queryKeys.data(context),
-    queryFn: () => client.data(context),
+    queryKey: queryKeys.data(),
+    queryFn: () => client.data(),
     structuralSharing: false
   });
 
   const handleClearLogs = async () => {
-    client.clear(context);
-    queryClient.setQueryData(queryKeys.data(context), { context, entries: [] });
+    client.clear();
+    queryClient.setQueryData(queryKeys.data(), { entries: [] });
   };
 
   return (

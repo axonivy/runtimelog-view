@@ -3,14 +3,6 @@ export function parameter(key: string): string | undefined {
   return param !== null ? decodeURIComponent(param) : undefined;
 }
 
-export function appParam(): string {
-  return parameter('app') ?? 'designer';
-}
-
-export function pmvParam(): string {
-  return parameter('pmv') ?? '';
-}
-
 export function themeParam(): 'dark' | 'light' {
   const theme = parameter('theme');
   if (theme === 'dark') {
