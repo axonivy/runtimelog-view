@@ -1,6 +1,6 @@
-import type { RuntimeLogViewData, RuntimeLogContext } from './data/log';
+import type { RuntimeLogViewData } from './data/log';
 
 export interface LogRequestTypes {
-  data: [RuntimeLogContext, RuntimeLogViewData];
-  clear: RuntimeLogContext;
+  data: [RuntimeLogViewData, RuntimeLogViewData];
+  clear: [];
 }

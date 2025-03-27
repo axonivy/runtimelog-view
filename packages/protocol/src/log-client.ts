@@ -1,4 +1,4 @@
-import type { RuntimeLogContext, RuntimeLogViewData } from './data/log';
+import type { RuntimeLogViewData } from './data/log';
 
 export interface Event<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -10,6 +10,6 @@ export interface Disposable {
 }
 
 export interface LogClient {
-  data(context: RuntimeLogContext): Promise<RuntimeLogViewData>;
-  clear(context: RuntimeLogContext): void;
+  data(): Promise<RuntimeLogViewData>;
+  clear(): void;
 }

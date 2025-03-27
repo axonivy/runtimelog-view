@@ -5,12 +5,10 @@ import { ThemeProvider, toast, Toaster, Spinner, Flex, HotkeysProvider } from '@
 import { webSocketConnection, type Connection } from '@axonivy/jsonrpc';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { webSocketBase, appParam, pmvParam, themeParam } from './url-helper';
+import { webSocketBase, themeParam } from './url-helper';
 
 export async function start() {
   const server = webSocketBase();
-  const app = appParam();
-  const pmv = pmvParam();
   const theme = themeParam();
   const queryClient = initQueryClient();
   const rootElement = document.getElementById('root');
@@ -38,7 +36,7 @@ export async function start() {
           <ClientContextProvider client={client}>
             <QueryProvider client={queryClient}>
               <HotkeysProvider initiallyActiveScopes={['global']}>
-                <App app={app} pmv={pmv} />
+                <App />
               </HotkeysProvider>
             </QueryProvider>
           </ClientContextProvider>
