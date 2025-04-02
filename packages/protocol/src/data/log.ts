@@ -8,15 +8,11 @@
 export type Level = ("OFF" | "FATAL" | "ERROR" | "WARN" | "INFO" | "DEBUG" | "TRACE" | "ALL")
 
 export interface Logs {
-  runtimeLogViewData: RuntimeLogViewData;
+  RuntimeLogEntry: RuntimeLogEntry[];
   void: Void;
   [k: string]: unknown;
 }
-export interface RuntimeLogViewData {
-  entries: RuntimeLogEntryLsp[];
-  [k: string]: unknown;
-}
-export interface RuntimeLogEntryLsp {
+export interface RuntimeLogEntry {
   category: string;
   level: Level;
   message: string;
