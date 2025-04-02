@@ -1,4 +1,4 @@
-import type { Level, RuntimeLogEntryLsp, RuntimeLogViewData } from '@axonivy/log-view-protocol';
+import type { Level, Logs, RuntimeLogEntry as RuntimeLogEntry } from '@axonivy/log-view-protocol';
 import {
   Button,
   DropdownMenu,
@@ -27,14 +27,14 @@ import { SeverityIcon } from './SeverityIcon';
 import { IvyIcons } from '@axonivy/ui-icons';
 
 interface ViewProps {
-  runtimeLogViewData: RuntimeLogViewData;
+  logs: Logs;
   clearlogs: () => void;
-  onRowClick: (rowData: RuntimeLogEntryLsp) => void;
+  onRowClick: (rowData: RuntimeLogEntry) => void;
 }
 
 export type LogLevel = Exclude<Level, 'OFF' | 'TRACE' | 'ALL'>;
 
-export const RuntimeLogTable = ({ runtimeLogViewData, clearlogs, onRowClick }: ViewProps) => {
+export const RuntimeLogTable = ({ logs, clearlogs, onRowClick }: ViewProps) => {
   const sort = useTableSort();
   const search = useTableGlobalFilter();
 
@@ -42,12 +42,11 @@ export const RuntimeLogTable = ({ runtimeLogViewData, clearlogs, onRowClick }: V
   const [isUserLog, setIsUserLog] = useState(false);
   const [selectedProjects, setSelectedProjects] = useState<string[]>([]);
 
-  const projectList = useMemo(() => (
-    Array.from(new Set(runtimeLogViewData.entries
-      .map(entry => entry.project)
-      .filter(project => project !== null && project !== '')
-    ))
-  ), [runtimeLogViewData.entries]);
+  const projectList = useMemo(
+    () =>
+      Array.from(new Set(logs.RuntimeLogEntry.map(entry => entry.project as string).filter(project => project !== null && project !== ''))),
+    [logs]
+  );
 
   const filteredData = useMemo(() => {
     const levelPriority: Record<LogLevel, number> = {
@@ -58,13 +57,12 @@ export const RuntimeLogTable = ({ runtimeLogViewData, clearlogs, onRowClick }: V
       FATAL: 4
     };
 
-    return runtimeLogViewData.entries
-      .filter(entry => selectedProjects.length === 0 || selectedProjects.includes(entry.project))
+    return logs.RuntimeLogEntry.filter(entry => selectedProjects.length === 0 || selectedProjects.includes(entry.project as string))
       .filter(entry => levelPriority[entry.level as LogLevel] >= levelPriority[selectedLevel])
       .filter(entry => (isUserLog ? entry.category === 'User' : true));
-  }, [runtimeLogViewData.entries, selectedLevel, isUserLog, selectedProjects]);
+  }, [logs, selectedLevel, isUserLog, selectedProjects]);
 
-  const columns: Array<ColumnDef<RuntimeLogEntryLsp, string>> = [
+  const columns: Array<ColumnDef<RuntimeLogEntry, string>> = [
     {
       accessorKey: 'level',
       header: ({ column }) => <SortableHeader column={column} name='Type' />,

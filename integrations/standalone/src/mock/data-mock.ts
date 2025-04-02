@@ -1,4 +1,4 @@
-import type { RuntimeLogViewData, Level } from '@axonivy/log-view-protocol';
+import type { Logs, Level, Void } from '@axonivy/log-view-protocol';
 
 const LevelValues: { [key in Level]: Level } = {
   OFF: 'OFF',
@@ -11,8 +11,8 @@ const LevelValues: { [key in Level]: Level } = {
   ALL: 'ALL'
 };
 
-export const data: RuntimeLogViewData = {
-  entries: [
+export const data: Logs = {
+  RuntimeLogEntry: [
     {
       level: LevelValues.INFO,
       message: 'Process intermediate event',
@@ -90,5 +90,6 @@ export const data: RuntimeLogViewData = {
       userDialogId: 'null',
       project: 'Neo'
     }
-  ]
+  ],
+  void: {} as Void
 };

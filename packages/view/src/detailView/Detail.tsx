@@ -1,11 +1,11 @@
-import type { RuntimeLogEntryLsp } from '@axonivy/log-view-protocol';
+import type { RuntimeLogEntry } from '@axonivy/log-view-protocol';
 import { Button, Flex } from '@axonivy/ui-components';
 import './Detail.css';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { LogEntryDetail } from './LogEntryDetail';
 
 interface ViewProps {
-  RuntimeLogEntry: RuntimeLogEntryLsp;
+  RuntimeLogEntry: RuntimeLogEntry;
   CloseDetailView: () => void;
 }
 
