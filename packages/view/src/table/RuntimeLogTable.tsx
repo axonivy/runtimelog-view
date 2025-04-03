@@ -43,8 +43,7 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
   const [selectedProjects, setSelectedProjects] = useState<string[]>([]);
 
   const projectList = useMemo(
-    () =>
-      Array.from(new Set(RuntimeLogEntry.map(entry => entry.project as string).filter(project => project !== null && project !== ''))),
+    () => Array.from(new Set(RuntimeLogEntry.map(entry => entry.project as string).filter(project => project !== null && project !== ''))),
     [RuntimeLogEntry]
   );
 
@@ -116,6 +115,7 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
           selectedLevel={selectedLevel}
           handleLogLevelChange={handleLogLevelChange}
           handleIsUserLogChange={setIsUserLog}
+          isUserLog={isUserLog}
           projects={projectList}
         />
         <DropdownMenu>
