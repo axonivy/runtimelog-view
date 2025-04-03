@@ -44,7 +44,7 @@ export const RuntimeLogTable = ({ logs, clearlogs, onRowClick }: ViewProps) => {
 
   const projectList = useMemo(
     () =>
-      Array.from(new Set(logs.RuntimeLogEntry.map(entry => entry.project as string).filter(project => project !== null && project !== ''))),
+      Array.from(new Set(logs.runtimeLogEntryLsp.map(entry => entry.project as string).filter(project => project !== null && project !== ''))),
     [logs]
   );
 
@@ -57,7 +57,7 @@ export const RuntimeLogTable = ({ logs, clearlogs, onRowClick }: ViewProps) => {
       FATAL: 4
     };
 
-    return logs.RuntimeLogEntry.filter(entry => selectedProjects.length === 0 || selectedProjects.includes(entry.project as string))
+    return logs.runtimeLogEntryLsp.filter(entry => selectedProjects.length === 0 || selectedProjects.includes(entry.project as string))
       .filter(entry => levelPriority[entry.level as LogLevel] >= levelPriority[selectedLevel])
       .filter(entry => (isUserLog ? entry.category === 'User' : true));
   }, [logs, selectedLevel, isUserLog, selectedProjects]);

@@ -8,7 +8,7 @@
 export type Level = ("OFF" | "FATAL" | "ERROR" | "WARN" | "INFO" | "DEBUG" | "TRACE" | "ALL")
 
 export interface Logs {
-  RuntimeLogEntry: RuntimeLogEntry[];
+  runtimeLogEntryLsp: RuntimeLogEntry[];
   void: Void;
   [k: string]: unknown;
 }

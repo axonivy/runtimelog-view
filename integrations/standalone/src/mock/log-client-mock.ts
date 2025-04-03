@@ -4,7 +4,7 @@ import { data } from './data-mock';
 
 export class LogClientMock implements LogClient {
   private logData: Logs = {
-    RuntimeLogEntry: data.RuntimeLogEntry,
+    runtimeLogEntryLsp: data.runtimeLogEntryLsp,
     void: {} as Void
   };
 
