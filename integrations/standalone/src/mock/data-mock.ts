@@ -12,7 +12,7 @@ const LevelValues: { [key in Level]: Level } = {
 };
 
 export const data: Logs = {
-  RuntimeLogEntry: [
+  runtimeLogEntryLsp: [
     {
       level: LevelValues.INFO,
       message: 'Process intermediate event',
