@@ -33,7 +33,7 @@ export const View = () => {
   return (
     <ResizablePanelGroup direction='horizontal'>
       <ResizablePanel defaultSize={75} minSize={20}>
-        {data && <RuntimeLogTable clearlogs={handleClearLogs} logs={data} onRowClick={rowData => setSelectedRow(rowData)} />}
+        {data && <RuntimeLogTable clearlogs={handleClearLogs} RuntimeLogEntry={data} onRowClick={rowData => setSelectedRow(rowData)} />}
       </ResizablePanel>
 
       <ResizableHandle />

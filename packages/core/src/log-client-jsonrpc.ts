@@ -1,6 +1,6 @@
 import type { LogRequestTypes, LogClient } from '@axonivy/log-view-protocol';
 import { BaseRpcClient, urlBuilder, createMessageConnection, Emitter, type Connection, type MessageConnection } from '@axonivy/jsonrpc';
-import type { Logs } from '@axonivy/log-view-protocol';
+import type { RuntimeLogEntry } from '@axonivy/log-view-protocol';
 
 export class LogClientJsonRpc extends BaseRpcClient implements LogClient {
   protected onDataChangedEmitter = new Emitter<void>();
@@ -10,7 +10,7 @@ export class LogClientJsonRpc extends BaseRpcClient implements LogClient {
     this.toDispose.push(this.onDataChangedEmitter);
   }
 
-  data(): Promise<Logs> {
+  data(): Promise<RuntimeLogEntry[]> {
     return this.sendRequest('data');
   }
 

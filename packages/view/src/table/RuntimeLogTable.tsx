@@ -1,4 +1,4 @@
-import type { Level, Logs, RuntimeLogEntry as RuntimeLogEntry } from '@axonivy/log-view-protocol';
+import type { Level, RuntimeLogEntry } from '@axonivy/log-view-protocol';
 import {
   Button,
   DropdownMenu,
@@ -27,14 +27,14 @@ import { SeverityIcon } from './SeverityIcon';
 import { IvyIcons } from '@axonivy/ui-icons';
 
 interface ViewProps {
-  logs: Logs;
   clearlogs: () => void;
+  RuntimeLogEntry: RuntimeLogEntry[];
   onRowClick: (rowData: RuntimeLogEntry) => void;
 }
 
 export type LogLevel = Exclude<Level, 'OFF' | 'TRACE' | 'ALL'>;
 
-export const RuntimeLogTable = ({ logs, clearlogs, onRowClick }: ViewProps) => {
+export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: ViewProps) => {
   const sort = useTableSort();
   const search = useTableGlobalFilter();
 
@@ -44,8 +44,8 @@ export const RuntimeLogTable = ({ logs, clearlogs, onRowClick }: ViewProps) => {
 
   const projectList = useMemo(
     () =>
-      Array.from(new Set(logs.runtimeLogEntryLsp.map(entry => entry.project as string).filter(project => project !== null && project !== ''))),
-    [logs]
+      Array.from(new Set(RuntimeLogEntry.map(entry => entry.project as string).filter(project => project !== null && project !== ''))),
+    [RuntimeLogEntry]
   );
 
   const filteredData = useMemo(() => {
@@ -57,10 +57,10 @@ export const RuntimeLogTable = ({ logs, clearlogs, onRowClick }: ViewProps) => {
       FATAL: 4
     };
 
-    return logs.runtimeLogEntryLsp.filter(entry => selectedProjects.length === 0 || selectedProjects.includes(entry.project as string))
+    return RuntimeLogEntry.filter(entry => selectedProjects.length === 0 || selectedProjects.includes(entry.project as string))
       .filter(entry => levelPriority[entry.level as LogLevel] >= levelPriority[selectedLevel])
       .filter(entry => (isUserLog ? entry.category === 'User' : true));
-  }, [logs, selectedLevel, isUserLog, selectedProjects]);
+  }, [RuntimeLogEntry, selectedLevel, isUserLog, selectedProjects]);
 
   const columns: Array<ColumnDef<RuntimeLogEntry, string>> = [
     {
