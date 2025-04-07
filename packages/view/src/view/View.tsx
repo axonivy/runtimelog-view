@@ -27,7 +27,7 @@ export const View = () => {
 
   const handleClearLogs = async () => {
     client.clear();
-    queryClient.setQueryData(queryKeys.data(), { entries: [] });
+    queryClient.setQueryData(queryKeys.data(), []);
   };
 
   return (
