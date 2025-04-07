@@ -24,6 +24,7 @@ import { FilterSerenities } from './FilterSerenities';
 interface FilterOptionsProps {
   handleLogLevelChange: (checked: boolean, level: LogLevel) => void;
   handleIsUserLogChange: (checked: boolean) => void;
+  isUserLog: boolean;
   selectedLevel: LogLevel;
   handleProjectFilterChange: (checked: string[]) => void;
   projects: string[];
@@ -36,7 +37,8 @@ export const FilterOptions = ({
   handleProjectFilterChange,
   projects,
   selectedProjects,
-  selectedLevel
+  selectedLevel,
+  isUserLog
 }: FilterOptionsProps) => {
   return (
     <DropdownMenu>
@@ -55,7 +57,7 @@ export const FilterOptions = ({
           <Field className='filter-options' direction='row' alignItems='center' gap={2}>
             <IvyIcon icon={IvyIcons.FilterCog} />
             <Label>Show only User Logs</Label>
-            <Checkbox onCheckedChange={handleIsUserLogChange} />
+            <Checkbox checked={isUserLog} onCheckedChange={handleIsUserLogChange} />
           </Field>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
