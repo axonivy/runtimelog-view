@@ -34,6 +34,14 @@ interface ViewProps {
 
 export type LogLevel = Exclude<Level, 'OFF' | 'TRACE' | 'ALL'>;
 
+export const levelPriority: Record<LogLevel, number> = {
+  DEBUG: 0,
+  INFO: 1,
+  WARN: 2,
+  ERROR: 3,
+  FATAL: 4
+};
+
 export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: ViewProps) => {
   const sort = useTableSort();
   const search = useTableGlobalFilter();
@@ -48,18 +56,10 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
   );
 
   const filteredData = useMemo(() => {
-    const levelPriority: Record<LogLevel, number> = {
-      DEBUG: 0,
-      INFO: 1,
-      WARN: 2,
-      ERROR: 3,
-      FATAL: 4
-    };
-
     return RuntimeLogEntry.filter(entry => selectedProjects.length === 0 || selectedProjects.includes(entry.project as string))
       .filter(entry => levelPriority[entry.level as LogLevel] >= levelPriority[selectedLevel])
       .filter(entry => (isUserLog ? entry.category === 'User' : true));
-  }, [RuntimeLogEntry, selectedLevel, isUserLog, selectedProjects]);
+  }, [RuntimeLogEntry, selectedProjects, selectedLevel, isUserLog]);
 
   const columns: Array<ColumnDef<RuntimeLogEntry, string>> = [
     {

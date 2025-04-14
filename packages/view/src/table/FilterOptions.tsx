@@ -64,7 +64,6 @@ export const FilterOptions = ({
 
         <DropdownMenuSub>
           <DropdownMenuSubTrigger disabled={projects.length === 0}>
-            <IvyIcon className='icon-wrapper project' icon={IvyIcons.Folders} />
             <Label>Project</Label>
           </DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
@@ -85,13 +84,19 @@ export const FilterOptions = ({
         </DropdownMenuSub>
 
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup className='radio-group' onValueChange={value => handleLogLevelChange(true, value as LogLevel)}>
-          <FilterSerenities selectedLevel={selectedLevel} level='DEBUG' />
-          <FilterSerenities selectedLevel={selectedLevel} level='INFO' />
-          <FilterSerenities selectedLevel={selectedLevel} level='WARN' />
-          <FilterSerenities selectedLevel={selectedLevel} level='ERROR' />
-          <FilterSerenities selectedLevel={selectedLevel} level='FATAL' />
-        </DropdownMenuRadioGroup>
+
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>Min Log Level</DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            <DropdownMenuRadioGroup className='radio-group' onValueChange={value => handleLogLevelChange(true, value as LogLevel)}>
+              <FilterSerenities selectedLevel={selectedLevel} level='DEBUG' />
+              <FilterSerenities selectedLevel={selectedLevel} level='INFO' />
+              <FilterSerenities selectedLevel={selectedLevel} level='WARN' />
+              <FilterSerenities selectedLevel={selectedLevel} level='ERROR' />
+              <FilterSerenities selectedLevel={selectedLevel} level='FATAL' />
+            </DropdownMenuRadioGroup>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
       </DropdownMenuContent>
     </DropdownMenu>
   );

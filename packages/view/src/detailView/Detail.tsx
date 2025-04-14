@@ -27,7 +27,8 @@ export const Detail = ({ RuntimeLogEntry, CloseDetailView }: ViewProps) => {
         <LogEntryDetail label='Category' value={RuntimeLogEntry.category} />
       </Flex>
 
-      <LogEntryDetail label='Message / Stack' value={RuntimeLogEntry.message} />
+      <LogEntryDetail label='Message' value={RuntimeLogEntry.message} />
+      <LogEntryDetail label='Stack' value={RuntimeLogEntry.throwableInformationMsg} />
     </Flex>
   );
 };
