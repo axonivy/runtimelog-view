@@ -17,10 +17,10 @@ export const data: RuntimeLogEntry[] = [
     message: 'Process intermediate event',
     category: 'User',
     processElement: '',
-    request: '',
+    request: 'HTTP GET rest/approval.p.json/createApprovalViaREST.ivp(4.4.0.0)',
     throwableInformationMsg: '',
     timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-    userDialogId: 'null',
+    userDialogId: '',
     project: 'Portal'
   },
   {
@@ -31,7 +31,7 @@ export const data: RuntimeLogEntry[] = [
     request: '',
     throwableInformationMsg: '',
     timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-    userDialogId: 'null',
+    userDialogId: '',
     project: 'Runtime'
   },
   {
@@ -42,7 +42,7 @@ export const data: RuntimeLogEntry[] = [
     request: '',
     throwableInformationMsg: '',
     timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-    userDialogId: 'null',
+    userDialogId: '',
     project: 'Portal'
   },
   {
@@ -53,7 +53,7 @@ export const data: RuntimeLogEntry[] = [
     request: '',
     throwableInformationMsg: '',
     timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-    userDialogId: 'null',
+    userDialogId: '',
     project: 'Conectivity'
   },
   {
@@ -64,7 +64,7 @@ export const data: RuntimeLogEntry[] = [
     request: '',
     throwableInformationMsg: '',
     timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-    userDialogId: 'null',
+    userDialogId: '',
     project: 'Process-inspector'
   },
   {
@@ -75,7 +75,7 @@ export const data: RuntimeLogEntry[] = [
     request: '',
     throwableInformationMsg: '',
     timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-    userDialogId: 'null',
+    userDialogId: '',
     project: 'Engine'
   },
   {
@@ -86,7 +86,7 @@ export const data: RuntimeLogEntry[] = [
     request: '',
     throwableInformationMsg: '',
     timestamp: 'Wed Jan 22 16:11:52 CET 2025',
-    userDialogId: 'null',
+    userDialogId: '',
     project: 'Neo'
   }
 ];

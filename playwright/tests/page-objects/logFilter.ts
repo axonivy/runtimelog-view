@@ -15,7 +15,10 @@ export class logFilter {
 
   async changeFilter(label: string) {
     await this.openFilter();
-    await this.page.getByRole('menuitemradio').getByText(label).click();
+    await this.page.getByRole('menuitem', { name: ' Min Log Level' }).focus();
+    await this.page.keyboard.press('Enter');
+    await this.page.getByRole('menuitemradio', { name: label }).focus();
+    await this.page.keyboard.press('Enter');
   }
 
   async filterUserLogs() {
