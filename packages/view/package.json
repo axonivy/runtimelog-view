@@ -22,6 +22,8 @@
     "@axonivy/ui-icons": "~13.1.0-next",
     "@tanstack/react-query": "^5.32",
     "@tanstack/react-query-devtools": "^5.32",
+    "i18next": "^24.2.3",
+    "react-i18next": "^15.4.1",
     "react": "^18.2 || ^19.0"
   },
   "devDependencies": {
@@ -33,7 +35,8 @@
     "jsdom": "^26.0.0",
     "rollup-plugin-visualizer": "^5.12.0",
     "vite-plugin-dts": "^4.3.0",
-    "vitest": "^3.0.8"
+    "vitest": "^3.0.8",
+    "i18next-parser": "^9.3.0"
   },
   "type": "module",
   "module": "lib/view.js",
@@ -46,6 +49,8 @@
     "build:clean": "npm run clean && npm run build",
     "type": "tsc --noEmit",
     "test": "vitest",
-    "test:ci": "vitest --watch=false"
+    "test:ci": "vitest --watch=false",
+    "i18n:extract": "i18next",
+    "i18n:ci": "i18next --fail-on-update"
   }
 }
