@@ -1,9 +1,9 @@
 export default {
-  defaultNamespace: 'runtime-log-view',
+  defaultNamespace: 'log-view',
   defaultValue: '__MISSING_TRANSLATION__',
   keepRemoved: false,
   locales: ['en', 'de'],
-  output: 'src/translation/log-view/$LOCALE.json',
+  output: 'src/translation/$NAMESPACE/$LOCALE.json',
   pluralSeparator: '_',
   input: ['src/**/*.ts', 'src/**/*.tsx'],
   verbose: false,

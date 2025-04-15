@@ -20,6 +20,7 @@ import { IvyIcons } from '@axonivy/ui-icons';
 import { type LogLevel } from './RuntimeLogTable';
 import './FilterOptions.css';
 import { FilterSerenities } from './FilterSerenities';
+import { useTranslation } from 'react-i18next';
 
 interface FilterOptionsProps {
   handleLogLevelChange: (checked: boolean, level: LogLevel) => void;
@@ -40,13 +41,14 @@ export const FilterOptions = ({
   selectedLevel,
   isUserLog
 }: FilterOptionsProps) => {
+  const { t } = useTranslation();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button className='filter-button' variant='outline'>
           <Flex gap={2}>
             <IvyIcon icon={IvyIcons.Filter} />
-            <Label>Filters</Label>
+            <Label>{t('label.filter')}</Label>
           </Flex>
           <IvyIcon icon={IvyIcons.Chevron} className='chevron' />
         </Button>
@@ -56,7 +58,7 @@ export const FilterOptions = ({
         <DropdownMenuLabel>
           <Field className='filter-options' direction='row' alignItems='center' gap={2}>
             <IvyIcon icon={IvyIcons.FilterCog} />
-            <Label>Show only User Logs</Label>
+            <Label>{t('label.userlog')}</Label>
             <Checkbox checked={isUserLog} onCheckedChange={handleIsUserLogChange} />
           </Field>
         </DropdownMenuLabel>
@@ -64,7 +66,7 @@ export const FilterOptions = ({
 
         <DropdownMenuSub>
           <DropdownMenuSubTrigger disabled={projects.length === 0}>
-            <Label>Project</Label>
+            <Label>{t('common.label.project')}</Label>
           </DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
             {projects.map(project => (
@@ -86,7 +88,7 @@ export const FilterOptions = ({
         <DropdownMenuSeparator />
 
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Min Log Level</DropdownMenuSubTrigger>
+          <DropdownMenuSubTrigger>{t('label.minloglevel')}</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
             <DropdownMenuRadioGroup className='radio-group' onValueChange={value => handleLogLevelChange(true, value as LogLevel)}>
               <FilterSerenities selectedLevel={selectedLevel} level='DEBUG' />

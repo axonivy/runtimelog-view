@@ -3,6 +3,7 @@ import { Button, Flex } from '@axonivy/ui-components';
 import './Detail.css';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { LogEntryDetail } from './LogEntryDetail';
+import { useTranslation } from 'react-i18next';
 
 interface ViewProps {
   RuntimeLogEntry: RuntimeLogEntry;
@@ -10,25 +11,26 @@ interface ViewProps {
 }
 
 export const Detail = ({ RuntimeLogEntry, CloseDetailView }: ViewProps) => {
+  const { t } = useTranslation();
   return (
     <Flex direction='column' gap={2} className='master-content-container detail-view'>
       <Flex direction='row' gap={2}>
         <Button onClick={() => CloseDetailView()} icon={IvyIcons.Close}>
-          Close
+          {t('common.label.close')}
         </Button>
       </Flex>
 
-      <LogEntryDetail label='Time' value={RuntimeLogEntry.timestamp} />
-      <LogEntryDetail label='Request' value={RuntimeLogEntry.request} />
-      <LogEntryDetail label='User Dialog' value={RuntimeLogEntry.userDialogId} />
+      <LogEntryDetail label={t('label.time')} value={RuntimeLogEntry.timestamp} />
+      <LogEntryDetail label={t('label.request')} value={RuntimeLogEntry.request} />
+      <LogEntryDetail label={t('label.userDialog')} value={RuntimeLogEntry.userDialogId} />
 
       <Flex gap={2} direction='row'>
-        <LogEntryDetail label='Level' value={RuntimeLogEntry.level} />
-        <LogEntryDetail label='Category' value={RuntimeLogEntry.category} />
+        <LogEntryDetail label={t('label.level')} value={RuntimeLogEntry.level} />
+        <LogEntryDetail label={t('label.category')} value={RuntimeLogEntry.category} />
       </Flex>
 
-      <LogEntryDetail label='Message' value={RuntimeLogEntry.message} />
-      <LogEntryDetail label='Stack' value={RuntimeLogEntry.throwableInformationMsg} />
+      <LogEntryDetail label={t('common.label.message')} value={RuntimeLogEntry.message} />
+      <LogEntryDetail label={t('label.stack')} value={RuntimeLogEntry.throwableInformationMsg} />
     </Flex>
   );
 };

@@ -1,1 +1,23 @@
-{}
+{
+  "common": {
+    "label": {
+      "close": "Schliessen",
+      "message": "Nachricht",
+      "project": "Projekt",
+      "type": "Typ"
+    }
+  },
+  "label": {
+    "category": "Kategorie",
+    "filter": "Filter",
+    "level": "Stufe",
+    "menu": "Menu",
+    "minloglevel": "Min Log Stufe",
+    "removelogs": "Alle Löschen",
+    "request": "Request",
+    "stack": "Stack",
+    "time": "Zeit",
+    "userDialog": "Benutzer Dialog",
+    "userlog": "Benutzer Logs"
+  }
+}
