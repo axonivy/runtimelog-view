@@ -5,6 +5,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { LogClientMock } from './mock/log-client-mock';
 import { readonlyParam } from './url-helper';
+import { initTranslation } from './i18n';
 
 export function start() {
   const logClient = new LogClientMock();
@@ -15,6 +16,7 @@ export function start() {
   if (root === null) {
     throw new Error('Root element not found');
   }
+  initTranslation();
   createRoot(root).render(
     <React.StrictMode>
       <ThemeProvider defaultTheme='light'>

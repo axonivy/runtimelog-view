@@ -25,6 +25,7 @@ import { FilterOptions } from './FilterOptions';
 import './RuntimeLogTable.css';
 import { SeverityIcon } from './SeverityIcon';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 
 interface ViewProps {
   clearlogs: () => void;
@@ -43,6 +44,7 @@ export const levelPriority: Record<LogLevel, number> = {
 };
 
 export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: ViewProps) => {
+  const { t } = useTranslation();
   const sort = useTableSort();
   const search = useTableGlobalFilter();
 
@@ -64,7 +66,7 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
   const columns: Array<ColumnDef<RuntimeLogEntry, string>> = [
     {
       accessorKey: 'level',
-      header: ({ column }) => <SortableHeader column={column} name='Type' />,
+      header: ({ column }) => <SortableHeader column={column} name={t('common.label.type')} />,
       cell: cell => (
         <Flex className='severity' gap={2}>
           <SeverityIcon level={cell.getValue() as LogLevel} />
@@ -75,13 +77,13 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
     },
     {
       accessorKey: 'project',
-      header: ({ column }) => <SortableHeader column={column} name='Project' />,
+      header: ({ column }) => <SortableHeader column={column} name={t('common.label.project')} />,
       cell: cell => cell.getValue(),
       maxSize: 30
     },
     {
       accessorKey: 'message',
-      header: ({ column }) => <SortableHeader column={column} name='Message' />,
+      header: ({ column }) => <SortableHeader column={column} name={t('common.label.message')} />,
       cell: cell => cell.getValue()
     }
   ];
@@ -120,7 +122,7 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button title='Menu' aria-label='Menu'>
+            <Button title={t('label.menu')} aria-label={t('label.menu')}>
               <IvyIcon icon={IvyIcons.Dots} />
             </Button>
           </DropdownMenuTrigger>
@@ -128,7 +130,7 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={clearlogs} className='dropdown-delete'>
                 <IvyIcon icon={IvyIcons.Trash} />
-                <Label>Delete All</Label>
+                <Label>{t('label.removelogs')}</Label>
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
