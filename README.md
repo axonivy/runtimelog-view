@@ -1,5 +1,7 @@
 # Runtime Logs View (Prototype)
 
+[![translation-status](https://hosted.weblate.org/widget/axonivy/runtime-log/svg-badge.svg)](https://hosted.weblate.org/engage/axonivy/)
+
 This repo contains the prototype of the web-based runtime log view.
 
 ## Client
