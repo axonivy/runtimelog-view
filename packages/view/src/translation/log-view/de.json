@@ -14,10 +14,10 @@
     "menu": "Menu",
     "minloglevel": "Min Log Stufe",
     "removelogs": "Alle Löschen",
-    "request": "Request",
+    "request": "Anfrage",
     "stack": "Stack",
     "time": "Zeit",
     "userDialog": "Benutzer Dialog",
-    "userlog": "Benutzer Logs"
+    "userlog": "Zeige nur Benutzer Logs"
   }
 }
