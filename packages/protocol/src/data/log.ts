@@ -5,7 +5,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type Level = ("OFF" | "FATAL" | "ERROR" | "WARN" | "INFO" | "DEBUG" | "TRACE" | "ALL")
+export type RuntimeLogCategory = ("DB" | "PERSISTENCE" | "REQUEST" | "WEB_SERVICE" | "MACRO" | "MAIL" | "PROCESS" | "WEB_SERVICE_PROCESS" | "CONTENT_MANAGEMENT" | "HTML" | "EVENT" | "USER" | "HTML_DIALOG" | "BUSINESS_DATA" | "REST_CLIENT" | "CASE_MAP")
+export type Level = "OFF" | "FATAL" | "ERROR" | "WARN" | "INFO" | "DEBUG" | "TRACE" | "ALL";
 
 export interface Logs {
   runtimeLogEntryLsp: RuntimeLogEntry[];
@@ -13,7 +14,7 @@ export interface Logs {
   [k: string]: unknown;
 }
 export interface RuntimeLogEntry {
-  category: string;
+  category: RuntimeLogCategory;
   level: Level;
   message: string;
   processElement: string;

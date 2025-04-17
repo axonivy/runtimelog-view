@@ -15,7 +15,7 @@ export const data: RuntimeLogEntry[] = [
   {
     level: LevelValues.INFO,
     message: 'Process intermediate event',
-    category: 'User',
+    category: 'USER',
     processElement: '',
     request: 'HTTP GET rest/approval.p.json/createApprovalViaREST.ivp(4.4.0.0)',
     throwableInformationMsg: '',
@@ -26,7 +26,7 @@ export const data: RuntimeLogEntry[] = [
   {
     level: LevelValues.WARN,
     message: 'Process intermediate event',
-    category: 'User',
+    category: 'USER',
     processElement: '',
     request: '',
     throwableInformationMsg: '',
@@ -37,7 +37,7 @@ export const data: RuntimeLogEntry[] = [
   {
     level: LevelValues.ERROR,
     message: 'Process intermediate event',
-    category: 'User',
+    category: 'USER',
     processElement: '',
     request: '',
     throwableInformationMsg: '',
@@ -48,7 +48,7 @@ export const data: RuntimeLogEntry[] = [
   {
     level: LevelValues.ERROR,
     message: 'Process intermediate event',
-    category: 'runtimelog',
+    category: 'HTML_DIALOG',
     processElement: '',
     request: '',
     throwableInformationMsg: '',
@@ -59,7 +59,7 @@ export const data: RuntimeLogEntry[] = [
   {
     level: LevelValues.ERROR,
     message: 'Process intermediate event',
-    category: 'runtimelog',
+    category: 'HTML_DIALOG',
     processElement: '',
     request: '',
     throwableInformationMsg: '',
@@ -70,7 +70,7 @@ export const data: RuntimeLogEntry[] = [
   {
     level: LevelValues.FATAL,
     message: 'Process intermediate event',
-    category: 'USer',
+    category: 'USER',
     processElement: '',
     request: '',
     throwableInformationMsg: '',
@@ -81,7 +81,7 @@ export const data: RuntimeLogEntry[] = [
   {
     level: LevelValues.DEBUG,
     message: 'Process intermediate event',
-    category: 'User',
+    category: 'HTML_DIALOG',
     processElement: '',
     request: '',
     throwableInformationMsg: '',

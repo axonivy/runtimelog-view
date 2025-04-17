@@ -60,7 +60,7 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
   const filteredData = useMemo(() => {
     return RuntimeLogEntry.filter(entry => selectedProjects.length === 0 || selectedProjects.includes(entry.project as string))
       .filter(entry => levelPriority[entry.level as LogLevel] >= levelPriority[selectedLevel])
-      .filter(entry => (isUserLog ? entry.category === 'User' : true));
+      .filter(entry => (isUserLog ? entry.category === 'USER' : true));
   }, [RuntimeLogEntry, selectedProjects, selectedLevel, isUserLog]);
 
   const columns: Array<ColumnDef<RuntimeLogEntry, string>> = [
@@ -73,7 +73,12 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
           <Label>{cell.getValue()}</Label>
         </Flex>
       ),
-      maxSize: 30
+      maxSize: 30,
+      sortingFn: (rowA, rowB) => {
+        const levelA = levelPriority[rowA.getValue('level') as LogLevel];
+        const levelB = levelPriority[rowB.getValue('level') as LogLevel];
+        return levelA - levelB;
+      }
     },
     {
       accessorKey: 'project',
