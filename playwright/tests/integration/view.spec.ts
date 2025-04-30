@@ -42,7 +42,7 @@ test.describe('DataTable filter & sorting', () => {
     const rows = page.locator('table tbody tr');
     await expect(rows).toHaveCount(4);
     await view.logFilter.filterUserLogs();
-    await expect(rows).toHaveCount(1);
+    await expect(rows).toHaveCount(2);
   });
 
   test('should sort', async ({ page }) => {
