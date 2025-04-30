@@ -1,9 +1,4 @@
-.filter-options {
-  padding: 0;
-  font-weight: normal;
-}
-
-button.filter-button {
+.filter-button {
   justify-content: space-between;
   width: 10%;
   max-width: 180px;
@@ -13,14 +8,12 @@ button.filter-button {
     rotate: 90deg;
     transition: transform 0.3s ease;
   }
+  &[aria-expanded='true'] .chevron {
+    transform: rotate(180deg);
+  }
 }
 
-button.filter-button[aria-expanded='true'] .chevron {
-  transform: rotate(180deg);
-}
-
-.radio-group .radio-item,
-.project-dropdown {
-  padding-left: 0.5em;
-  justify-content: space-between;
+.filter-options {
+  padding: 0;
+  font-weight: normal;
 }

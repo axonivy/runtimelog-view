@@ -68,7 +68,7 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
       accessorKey: 'level',
       header: ({ column }) => <SortableHeader column={column} name={t('common.label.type')} />,
       cell: cell => (
-        <Flex className='severity' gap={2}>
+        <Flex alignItems='center' gap={2}>
           <SeverityIcon level={cell.getValue() as LogLevel} />
           <Label>{cell.getValue()}</Label>
         </Flex>

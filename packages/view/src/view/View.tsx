@@ -1,4 +1,3 @@
-import './View.css';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@axonivy/ui-components';
 import { RuntimeLogTable } from './../table/RuntimeLogTable';
 import { Detail } from './../detailView/Detail';
@@ -31,17 +30,21 @@ export const View = () => {
   };
 
   return (
-    <ResizablePanelGroup direction='horizontal'>
-      <ResizablePanel defaultSize={75} minSize={20}>
-        {data && <RuntimeLogTable clearlogs={handleClearLogs} RuntimeLogEntry={data} onRowClick={rowData => setSelectedRow(rowData)} />}
-      </ResizablePanel>
-
-      <ResizableHandle />
-      {selectedRow && (
-        <ResizablePanel defaultSize={25} minSize={10}>
-          <Detail RuntimeLogEntry={selectedRow} CloseDetailView={() => setSelectedRow(null)} />
+    <div className='runtimelog-view'>
+      <ResizablePanelGroup direction='horizontal' style={{ gap: 'var(--size-3)' }}>
+        <ResizablePanel defaultSize={75} minSize={20}>
+          {data && <RuntimeLogTable clearlogs={handleClearLogs} RuntimeLogEntry={data} onRowClick={rowData => setSelectedRow(rowData)} />}
         </ResizablePanel>
-      )}
-    </ResizablePanelGroup>
+
+        {selectedRow && (
+          <>
+            <ResizableHandle />
+            <ResizablePanel defaultSize={25} minSize={10}>
+              <Detail RuntimeLogEntry={selectedRow} CloseDetailView={() => setSelectedRow(null)} />
+            </ResizablePanel>
+          </>
+        )}
+      </ResizablePanelGroup>
+    </div>
   );
 };

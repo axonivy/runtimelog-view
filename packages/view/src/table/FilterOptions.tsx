@@ -90,12 +90,16 @@ export const FilterOptions = ({
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>{t('label.minloglevel')}</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup className='radio-group' onValueChange={value => handleLogLevelChange(true, value as LogLevel)}>
-              <FilterSerenities selectedLevel={selectedLevel} level='DEBUG' />
-              <FilterSerenities selectedLevel={selectedLevel} level='INFO' />
-              <FilterSerenities selectedLevel={selectedLevel} level='WARN' />
-              <FilterSerenities selectedLevel={selectedLevel} level='ERROR' />
-              <FilterSerenities selectedLevel={selectedLevel} level='FATAL' />
+            <DropdownMenuRadioGroup
+              className='radio-group'
+              value={selectedLevel}
+              onValueChange={value => handleLogLevelChange(true, value as LogLevel)}
+            >
+              <FilterSerenities level='DEBUG' />
+              <FilterSerenities level='INFO' />
+              <FilterSerenities level='WARN' />
+              <FilterSerenities level='ERROR' />
+              <FilterSerenities level='FATAL' />
             </DropdownMenuRadioGroup>
           </DropdownMenuSubContent>
         </DropdownMenuSub>

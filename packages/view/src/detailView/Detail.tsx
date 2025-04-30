@@ -13,7 +13,7 @@ interface ViewProps {
 export const Detail = ({ RuntimeLogEntry, CloseDetailView }: ViewProps) => {
   const { t } = useTranslation();
   return (
-    <Flex direction='column' gap={2} className='master-content-container detail-view'>
+    <Flex direction='column' gap={4} className='master-content-container detail-view'>
       <Flex justifyContent='flex-end' direction='row' gap={2}>
         <Button onClick={() => CloseDetailView()} icon={IvyIcons.Close}>
           {t('common.label.close')}
