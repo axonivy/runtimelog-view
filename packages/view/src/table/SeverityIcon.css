@@ -1,4 +1,4 @@
-.icon-wrapper {
+.log-level-icon {
   flex-shrink: 0;
   width: 20px;
   height: 20px;
@@ -6,34 +6,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.debug {
-  background-color: #ececec;
-  color: #a0a0a0;
-}
-
-.info {
-  background-color: #e0e9ff;
-  color: #6490ff;
-}
-
-.warn {
-  background-color: #ffdcbf;
-  color: #ff8b2b;
-}
-
-.error {
-  background-color: #fad0d2;
-  color: #e93d43;
-}
-
-.fatal {
-  background-color: #fd666b;
-  color: #7d0509;
-}
-
-.project {
-  background-color: #cccccc;
-  color: #ffffff;
+  &.debug {
+    background-color: #ececec;
+    color: #a0a0a0;
+  }
+  &.info {
+    background-color: #e0e9ff;
+    color: #6490ff;
+  }
+  &.warn {
+    background-color: #ffdcbf;
+    color: #ff8b2b;
+  }
+  &.error {
+    background-color: #fad0d2;
+    color: #e93d43;
+  }
+  &.fatal {
+    background-color: #fd666b;
+    color: #7d0509;
+  }
+  &.project {
+    background-color: #cccccc;
+    color: #ffffff;
+  }
 }

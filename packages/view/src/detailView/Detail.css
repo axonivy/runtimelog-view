@@ -1,4 +1,5 @@
-.detail-view-key {
-  font-weight: bold;
-  padding-top: 10px;
+.runtimelog-view {
+  .detail-view-key {
+    font-weight: bold;
+  }
 }

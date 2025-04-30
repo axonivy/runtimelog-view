@@ -14,5 +14,5 @@ const icons: Record<LogLevel, IvyIcons> = {
 };
 
 export const SeverityIcon = ({ level }: { level: LogLevel }) => (
-  <IvyIcon className={`icon-wrapper ${level.toLowerCase()}`} icon={icons[level] || IvyIcons.InfoCircle} />
+  <IvyIcon className={`log-level-icon ${level.toLowerCase()}`} icon={icons[level] || IvyIcons.InfoCircle} />
 );
