@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import { visualizer } from 'rollup-plugin-visualizer';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
@@ -10,9 +10,6 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, './src')
     }
-  },
-  esbuild: {
-    sourcemap: 'inline'
   },
   build: {
     outDir: 'lib',
@@ -37,5 +34,19 @@ export default defineConfig({
         'react-dom'
       ]
     }
+  },
+  test: {
+    dir: 'src',
+    include: ['**/*.test.ts?(x)'],
+    alias: {
+      'test-utils': resolve(__dirname, 'src/test-utils/test-utils.tsx'),
+      '@axonivy/log-view-protocol': resolve(__dirname, '../../packages/protocol/src')
+    },
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['src/test-utils/setupTests.tsx'],
+    css: false,
+    reporters: process.env.CI ? ['basic', 'junit'] : ['default'],
+    outputFile: 'report.xml'
   }
 });
