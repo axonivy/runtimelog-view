@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "@axonivy/log-view-protocol": "~13.1.0-next",
-    "react-error-boundary": "^5.0.0"
+    "react-error-boundary": "^6.0.0"
   },
   "peerDependencies": {
     "@axonivy/ui-components": "~13.1.0-next",
