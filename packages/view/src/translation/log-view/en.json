@@ -13,6 +13,7 @@
     "level": "Level",
     "menu": "Menu",
     "minloglevel": "Min Log Level",
+    "refresh": "Refresh",
     "removelogs": "Delete All",
     "request": "Request",
     "stack": "Stack",

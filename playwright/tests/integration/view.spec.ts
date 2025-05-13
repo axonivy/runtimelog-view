@@ -64,3 +64,19 @@ test.describe('DataTable filter & sorting', () => {
     await expect(rows).toHaveCount(0);
   });
 });
+
+
+test('should reload data', async ({ page }) => {
+  await LogView.openMock(page);
+  const rows = page.locator('table tbody tr');
+  await expect(rows).toHaveCount(7);
+
+  await page.getByRole('button', { name: 'Menu' }).click();
+  await page.getByRole('menuitem', { name: 'Delete All' }).click();
+
+  await expect(rows).toHaveCount(0);
+
+  await page.getByRole('button', { name: 'Refresh' }).click();
+
+  await expect(rows).toHaveCount(7);
+});

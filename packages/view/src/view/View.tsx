@@ -18,6 +18,10 @@ export const View = () => {
     };
   }, []);
 
+  const refreshData = async () => {
+    queryClient.invalidateQueries({ queryKey: queryKeys.data()});
+  };
+
   const { data } = useQuery({
     queryKey: queryKeys.data(),
     queryFn: () => client.data(),
@@ -33,7 +37,7 @@ export const View = () => {
     <div className='runtimelog-view'>
       <ResizablePanelGroup direction='horizontal' style={{ gap: 'var(--size-3)' }}>
         <ResizablePanel defaultSize={75} minSize={20}>
-          {data && <RuntimeLogTable clearlogs={handleClearLogs} RuntimeLogEntry={data} onRowClick={rowData => setSelectedRow(rowData)} />}
+          {data && <RuntimeLogTable refreshData={refreshData} clearlogs={handleClearLogs} RuntimeLogEntry={data} onRowClick={rowData => setSelectedRow(rowData)} />}
         </ResizablePanel>
 
         {selectedRow && (

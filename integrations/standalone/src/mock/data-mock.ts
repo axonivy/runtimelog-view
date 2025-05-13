@@ -11,7 +11,7 @@ const LevelValues: { [key in Level]: Level } = {
   ALL: 'ALL'
 };
 
-export const data: RuntimeLogEntry[] = [
+export const generateMockData = (): RuntimeLogEntry[] => [
   {
     level: LevelValues.INFO,
     message: 'Process intermediate event',
