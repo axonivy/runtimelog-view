@@ -10,6 +10,7 @@ import {
   IvyIcon,
   Label,
   selectRow,
+  Separator,
   SortableHeader,
   Table,
   TableBody,
@@ -126,6 +127,7 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick, refres
           isUserLog={isUserLog}
           projects={projectList}
         />
+        <Separator decorative orientation='vertical' className='menu-seperator' />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button title={t('label.menu')} aria-label={t('label.menu')}>
@@ -141,9 +143,9 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick, refres
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button onClick={refreshData}>
+        <Separator decorative orientation='vertical' className='menu-seperator' />
+        <Button onClick={refreshData} title={t('label.refresh')} aria-label={t('label.refresh')}>
           <IvyIcon icon={IvyIcons.Redo} />
-          <Label>{t('label.refresh')}</Label>
         </Button>
       </Flex>
 

@@ -9,7 +9,7 @@ export class logFilter {
   }
 
   async openFilter() {
-    await this.page.locator('button').getByText('Filters').click();
+    await this.page.getByRole('button', { name: 'Filters' }).click();
     await expect(this.page.getByRole('menu')).toBeVisible();
   }
 
