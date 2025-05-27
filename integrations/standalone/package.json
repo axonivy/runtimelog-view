@@ -6,7 +6,7 @@
   "homepage": "https://developer.axonivy.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/axonivy/runtimelog-view-client"
+    "url": "https://github.com/axonivy/runtimelog-view"
   },
   "dependencies": {
     "@axonivy/log-view": "*",
