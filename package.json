@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "parent",
+  "name": "@axonivy/log-view-root",
   "engines": {
     "node": ">=20.10.0"
   },
