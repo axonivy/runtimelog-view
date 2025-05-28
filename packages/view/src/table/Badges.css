@@ -1,0 +1,16 @@
+.badges-circle {
+  width: 10px;
+  height: 10px;
+  font-size: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--P300);
+  color: white;
+  &.top-right {
+    position: relative;
+    right: 10px;
+    bottom: 8px;
+  }
+}

@@ -7,6 +7,10 @@
   .search-field {
     flex: 1;
   }
+
+  .menu-seperator {
+    margin: 0;
+  }
 }
 
 .dropdown-delete {
