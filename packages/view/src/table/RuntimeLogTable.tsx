@@ -47,7 +47,7 @@ export const levelPriority: Record<LogLevel, number> = {
 export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick, refreshData }: ViewProps) => {
   const { t } = useTranslation();
   const sort = useTableSort();
-  const search = useTableGlobalFilter();
+  const search = useTableGlobalFilter({ searchPlaceholder: t('common.label.search') });
 
   const [selectedLevel, setSelectedLevel] = useState<LogLevel>('DEBUG');
   const [isUserLog, setIsUserLog] = useState(false);
