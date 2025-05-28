@@ -9,7 +9,7 @@ interface FilterSerenitiesProps {
 export const FilterSerenities = ({ level }: FilterSerenitiesProps) => {
   return (
     <DropdownMenuRadioItem className='radio-item' value={level}>
-      <Flex className='severity' gap={2}>
+      <Flex className='severity' alignItems='center' gap={2}>
         <SeverityIcon level={level} />
         {level}
       </Flex>
