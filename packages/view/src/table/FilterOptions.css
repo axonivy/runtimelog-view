@@ -1,19 +1,11 @@
-.filter-button {
-  justify-content: space-between;
-  width: 10%;
-  max-width: 180px;
-  min-width: 100px;
-  .chevron {
-    display: inline-block;
-    rotate: 90deg;
-    transition: transform 0.3s ease;
-  }
-  &[aria-expanded='true'] .chevron {
-    transform: rotate(180deg);
-  }
+.sub-dropdown {
+  width: 8em;
 }
 
-.filter-options {
-  padding: 0;
+.filter-label {
   font-weight: normal;
+  height: 2em;
+  &.remove-filter-button {
+    color: var(--error-color);
+  }
 }

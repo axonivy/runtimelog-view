@@ -21,6 +21,7 @@ import { type LogLevel } from './RuntimeLogTable';
 import './FilterOptions.css';
 import { FilterSerenities } from './FilterSerenities';
 import { useTranslation } from 'react-i18next';
+import { Badges } from './Badges';
 
 interface FilterOptionsProps {
   handleLogLevelChange: (checked: boolean, level: LogLevel) => void;
@@ -45,30 +46,30 @@ export const FilterOptions = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className='filter-button' variant='outline'>
-          <Flex gap={2}>
-            <IvyIcon icon={IvyIcons.Filter} />
-            <Label>{t('label.filter')}</Label>
-          </Flex>
-          <IvyIcon icon={IvyIcons.Chevron} className='chevron' />
+        <Button title={t('label.filter')} aria-label={t('label.filter')}>
+          <IvyIcon icon={IvyIcons.Configuration} />
+          <Badges location='top-right' filtersSelected={selectedLevel === 'DEBUG' && selectedProjects.length === 0 ? 0 : 1}></Badges>
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
-        <DropdownMenuLabel>
-          <Field className='filter-options' direction='row' alignItems='center' gap={2}>
-            <IvyIcon icon={IvyIcons.FilterCog} />
-            <Label>{t('label.userlog')}</Label>
-            <Checkbox checked={isUserLog} onCheckedChange={handleIsUserLogChange} />
-          </Field>
-        </DropdownMenuLabel>
+        <DropdownMenuLabel>{t('label.filterBy')}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger disabled={projects.length === 0}>
-            <Label>{t('common.label.project')}</Label>
+          <DropdownMenuLabel className='filter-label'>
+            <Field direction='row' alignItems='center' gap={2}>
+              <Checkbox checked={isUserLog} onCheckedChange={handleIsUserLogChange} />
+              <Label>{t('label.userlog')}</Label>
+            </Field>
+          </DropdownMenuLabel>
+        </DropdownMenuSub>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger className='filter-label' disabled={projects.length === 0}>
+            <IvyIcon icon={IvyIcons.Folders} />
+            {t('common.label.project')}
+            <Badges filtersSelected={selectedProjects.length}></Badges>
           </DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
+          <DropdownMenuSubContent className='sub-dropdown'>
             {projects.map(project => (
               <DropdownMenuCheckboxItem
                 className='project-dropdown'
@@ -84,12 +85,13 @@ export const FilterOptions = ({
             ))}
           </DropdownMenuSubContent>
         </DropdownMenuSub>
-
-        <DropdownMenuSeparator />
-
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger>{t('label.minloglevel')}</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
+          <DropdownMenuSubTrigger className='filter-label'>
+            <IvyIcon icon={IvyIcons.PriorityHigh} />
+            {t('label.minloglevel')}
+            <Badges filtersSelected={selectedLevel === 'DEBUG' ? 0 : 1}></Badges>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuSubContent className='sub-dropdown'>
             <DropdownMenuRadioGroup
               className='radio-group'
               value={selectedLevel}
@@ -102,6 +104,20 @@ export const FilterOptions = ({
               <FilterSerenities level='FATAL' />
             </DropdownMenuRadioGroup>
           </DropdownMenuSubContent>
+        </DropdownMenuSub>
+        <DropdownMenuSub>
+          <Flex direction='row' justifyContent='center' gap={2}>
+            <Button
+              className='filter-label remove-filter-button'
+              onClick={() => {
+                handleLogLevelChange(true, 'DEBUG');
+                handleIsUserLogChange(false);
+                handleProjectFilterChange([]);
+              }}
+            >
+              {t('label.clearfilters')}
+            </Button>
+          </Flex>
         </DropdownMenuSub>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -53,6 +53,17 @@ test.describe('DataTable filter & sorting', () => {
     await expect(rows).toHaveCount(3);
   });
 
+  test('should remove all filters', async ({ page }) => {
+    const view = await LogView.openMock(page);
+    await view.logFilter.changeFilter('ERROR');
+    await view.logFilter.filterProject('Portal');
+    const rows = page.locator('table tbody tr');
+    await expect(rows).toHaveCount(1);
+    await view.logFilter.openFilter();
+    await page.getByRole('button', { name: 'Remove all filters' }).click();
+    await expect(rows).toHaveCount(7);
+  });
+
   test('should delete all Logs', async ({ page }) => {
     await LogView.openMock(page);
     const rows = page.locator('table tbody tr');
@@ -64,7 +75,6 @@ test.describe('DataTable filter & sorting', () => {
     await expect(rows).toHaveCount(0);
   });
 });
-
 
 test('should reload data', async ({ page }) => {
   await LogView.openMock(page);
