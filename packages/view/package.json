@@ -1,6 +1,6 @@
 {
   "name": "@axonivy/log-view",
-  "version": "13.1.0-next",
+  "version": "13.1.1-next",
   "private": false,
   "license": "Apache-2.0",
   "author": "Axon Ivy AG",
@@ -14,7 +14,7 @@
     "src"
   ],
   "dependencies": {
-    "@axonivy/log-view-protocol": "~13.1.0-next",
+    "@axonivy/log-view-protocol": "13.1.1-next",
     "react-error-boundary": "^6.0.0"
   },
   "peerDependencies": {
@@ -23,8 +23,8 @@
     "@tanstack/react-query": "^5.32",
     "@tanstack/react-query-devtools": "^5.32",
     "i18next": "^24.2.3 || ^25.0.0",
-    "react-i18next": "^15.4.1",
-    "react": "^18.2 || ^19.0"
+    "react": "^18.2 || ^19.0",
+    "react-i18next": "^15.4.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
@@ -32,11 +32,11 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^19.0.10",
     "@vanilla-extract/recipes": "^0.5.5",
+    "i18next-parser": "^9.3.0",
     "jsdom": "^26.0.0",
     "rollup-plugin-visualizer": "^5.12.0",
     "vite-plugin-dts": "^4.3.0",
-    "vitest": "^3.0.8",
-    "i18next-parser": "^9.3.0"
+    "vitest": "^3.0.8"
   },
   "type": "module",
   "module": "lib/view.js",
