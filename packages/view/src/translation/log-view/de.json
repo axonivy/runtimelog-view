@@ -10,7 +10,7 @@
   },
   "label": {
     "category": "Kategorie",
-    "clearfilters": "Alle filter entfernen",
+    "clearfilters": "Alle Filter entfernen",
     "filter": "Filter",
     "filterBy": "Filter nach",
     "level": "Stufe",
@@ -18,7 +18,7 @@
     "minloglevel": "Min Log Stufe",
     "refresh": "Aktualisieren",
     "removelogs": "Alle Logs Löschen",
-    "request": "Anfrage",
+    "request": "Aufruf",
     "stack": "Stack",
     "time": "Zeit",
     "userDialog": "Benutzer Dialog",
