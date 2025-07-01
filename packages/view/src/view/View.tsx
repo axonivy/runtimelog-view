@@ -3,7 +3,7 @@ import { RuntimeLogTable } from './../table/RuntimeLogTable';
 import { Detail } from './../detailView/Detail';
 import { useClient } from '../context/ClientContext';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { genQueryKey } from '../query/query-client';
 import type { RuntimeLogEntry } from '@axonivy/log-view-protocol';
 
@@ -18,15 +18,24 @@ export const View = () => {
     };
   }, []);
 
-  const refreshData = async () => {
-    queryClient.invalidateQueries({ queryKey: queryKeys.data()});
-  };
-
   const { data } = useQuery({
     queryKey: queryKeys.data(),
     queryFn: () => client.data(),
     structuralSharing: false
   });
+
+  useEffect(() => {
+    const disposable = client.onNewEntry(entry => {
+      queryClient.setQueryData<RuntimeLogEntry[]>(queryKeys.data(), old => {
+        if (!old) return [entry];
+        return [...old, entry].sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+      });
+    });
+
+    return () => {
+      disposable.dispose();
+    };
+  }, [client, queryClient, queryKeys]);
 
   const handleClearLogs = async () => {
     client.clear();
@@ -37,7 +46,7 @@ export const View = () => {
     <div className='runtimelog-view'>
       <ResizablePanelGroup direction='horizontal' style={{ gap: 'var(--size-3)' }}>
         <ResizablePanel defaultSize={75} minSize={20}>
-          {data && <RuntimeLogTable refreshData={refreshData} clearlogs={handleClearLogs} RuntimeLogEntry={data} onRowClick={rowData => setSelectedRow(rowData)} />}
+          {data && <RuntimeLogTable clearlogs={handleClearLogs} RuntimeLogEntry={data} onRowClick={rowData => setSelectedRow(rowData)} />}
         </ResizablePanel>
 
         {selectedRow && (

@@ -32,7 +32,6 @@ interface ViewProps {
   clearlogs: () => void;
   RuntimeLogEntry: RuntimeLogEntry[];
   onRowClick: (rowData: RuntimeLogEntry) => void;
-  refreshData: () => void;
 }
 
 export type LogLevel = Exclude<Level, 'OFF' | 'TRACE' | 'ALL'>;
@@ -45,7 +44,7 @@ export const levelPriority: Record<LogLevel, number> = {
   FATAL: 4
 };
 
-export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick, refreshData }: ViewProps) => {
+export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: ViewProps) => {
   const { t } = useTranslation();
   const sort = useTableSort();
   const search = useTableGlobalFilter({ searchPlaceholder: t('common.label.search') });
@@ -143,10 +142,6 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick, refres
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Separator decorative orientation='vertical' className='menu-seperator' />
-        <Button onClick={refreshData} title={t('label.refresh')} aria-label={t('label.refresh')}>
-          <IvyIcon icon={IvyIcons.Redo} />
-        </Button>
       </Flex>
 
       <Table style={{ overflowX: 'unset' }}>
