@@ -12,4 +12,5 @@ export interface Disposable {
 export interface LogClient {
   data(): Promise<RuntimeLogEntry[]>;
   clear(): void;
+  onNewEntry: Event<RuntimeLogEntry>;
 }

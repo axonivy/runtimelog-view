@@ -3,6 +3,8 @@ import { Emitter } from '@axonivy/jsonrpc';
 import { generateMockData } from './data-mock';
 
 export class LogClientMock implements LogClient {
+  private onNewEntryEmitter = new Emitter<RuntimeLogEntry>();
+  onNewEntry = this.onNewEntryEmitter.event;
   protected onValidationChangedEmitter = new Emitter<void>();
   onValidationChanged = this.onValidationChangedEmitter.event;
   protected onDataChangedEmitter = new Emitter<void>();
@@ -12,6 +14,5 @@ export class LogClientMock implements LogClient {
     return Promise.resolve(generateMockData());
   }
 
-  clear(): void {
-  }
+  clear(): void {}
 }
