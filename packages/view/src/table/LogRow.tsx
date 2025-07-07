@@ -8,9 +8,11 @@ type LogRowProps = {
 };
 
 export const LogRow = ({ row, onRowClick }: LogRowProps) => {
-  const tableCell = row
-    .getVisibleCells()
-    .map(cell => <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>);
+  const tableCell = row.getVisibleCells().map(cell => (
+    <TableCell style={{ padding: '6px' }} key={cell.id}>
+      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+    </TableCell>
+  ));
 
   return (
     <SelectRow id={row.index.toString()} row={row} onClick={() => onRowClick(row.original)}>
