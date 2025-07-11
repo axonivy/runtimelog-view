@@ -1,4 +1,4 @@
-import type { RuntimeLogEntry, Level } from '@axonivy/log-view-protocol';
+import type { Level, RuntimeLogEntry } from '@axonivy/log-view-protocol';
 
 const LevelValues: { [key in Level]: Level } = {
   OFF: 'OFF',

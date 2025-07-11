@@ -1,5 +1,5 @@
-import type { LogClient, RuntimeLogEntry } from '@axonivy/log-view-protocol';
 import { Emitter } from '@axonivy/jsonrpc';
+import type { LogClient, RuntimeLogEntry } from '@axonivy/log-view-protocol';
 import { generateMockData } from './data-mock';
 
 export class LogClientMock implements LogClient {

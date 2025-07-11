@@ -18,15 +18,15 @@ import {
   useTableGlobalFilter,
   useTableSort
 } from '@axonivy/ui-components';
-import { getCoreRowModel, type ColumnDef } from '@tanstack/table-core';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useReactTable } from '@tanstack/react-table';
-import { LogRow } from './LogRow';
+import { getCoreRowModel, type ColumnDef } from '@tanstack/table-core';
 import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FilterOptions } from './FilterOptions';
+import { LogRow } from './LogRow';
 import './RuntimeLogTable.css';
 import { SeverityIcon } from './SeverityIcon';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { useTranslation } from 'react-i18next';
 
 interface ViewProps {
   clearlogs: () => void;

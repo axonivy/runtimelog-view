@@ -1,6 +1,6 @@
+import type { RuntimeLogEntry } from '@axonivy/log-view-protocol';
 import { SelectRow, TableCell } from '@axonivy/ui-components';
 import { flexRender, type Row } from '@tanstack/react-table';
-import type { RuntimeLogEntry } from '@axonivy/log-view-protocol';
 
 type LogRowProps = {
   row: Row<RuntimeLogEntry>;

@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { screenshot } from './screenshot-util';
 import { LogView } from '../page-objects/log-view';
+import { screenshot } from './screenshot-util';
 
 test('Runtime Log View', async ({ page }) => {
   await LogView.openMock(page);
