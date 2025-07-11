@@ -1,9 +1,9 @@
 import type { RuntimeLogEntry } from '@axonivy/log-view-protocol';
 import { Button, Flex } from '@axonivy/ui-components';
-import './Detail.css';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { LogEntryDetail } from './LogEntryDetail';
 import { useTranslation } from 'react-i18next';
+import './Detail.css';
+import { LogEntryDetail } from './LogEntryDetail';
 
 interface ViewProps {
   RuntimeLogEntry: RuntimeLogEntry;

@@ -1,11 +1,11 @@
-import './index.css';
 import { App, ClientContextProvider, QueryProvider, initQueryClient } from '@axonivy/log-view';
 import { HotkeysProvider, ReadonlyProvider, ThemeProvider } from '@axonivy/ui-components';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { initTranslation } from './i18n';
+import './index.css';
 import { LogClientMock } from './mock/log-client-mock';
 import { readonlyParam } from './url-helper';
-import { initTranslation } from './i18n';
 
 export function start() {
   const logClient = new LogClientMock();

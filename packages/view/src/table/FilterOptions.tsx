@@ -17,11 +17,11 @@ import {
   Label
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { type LogLevel } from './RuntimeLogTable';
-import './FilterOptions.css';
-import { FilterSerenities } from './FilterSerenities';
 import { useTranslation } from 'react-i18next';
 import { Badges } from './Badges';
+import './FilterOptions.css';
+import { FilterSerenities } from './FilterSerenities';
+import { type LogLevel } from './RuntimeLogTable';
 
 interface FilterOptionsProps {
   handleLogLevelChange: (checked: boolean, level: LogLevel) => void;

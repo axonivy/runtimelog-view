@@ -1,11 +1,11 @@
+import type { RuntimeLogEntry } from '@axonivy/log-view-protocol';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@axonivy/ui-components';
-import { RuntimeLogTable } from './../table/RuntimeLogTable';
-import { Detail } from './../detailView/Detail';
-import { useClient } from '../context/ClientContext';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo, useState } from 'react';
+import { useClient } from '../context/ClientContext';
 import { genQueryKey } from '../query/query-client';
-import type { RuntimeLogEntry } from '@axonivy/log-view-protocol';
+import { Detail } from './../detailView/Detail';
+import { RuntimeLogTable } from './../table/RuntimeLogTable';
 
 export const View = () => {
   const client = useClient();

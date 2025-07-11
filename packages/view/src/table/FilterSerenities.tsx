@@ -1,6 +1,6 @@
 import { DropdownMenuRadioItem, Flex } from '@axonivy/ui-components';
-import { SeverityIcon } from './SeverityIcon';
 import { type LogLevel } from './RuntimeLogTable';
+import { SeverityIcon } from './SeverityIcon';
 
 interface FilterSerenitiesProps {
   level: LogLevel;

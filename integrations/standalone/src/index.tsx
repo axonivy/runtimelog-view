@@ -1,12 +1,12 @@
-import './index.css';
-import { App, ClientContextProvider, QueryProvider, initQueryClient } from '@axonivy/log-view';
-import { LogClientJsonRpc } from '@axonivy/log-view-core';
-import { ThemeProvider, toast, Toaster, Spinner, Flex, HotkeysProvider } from '@axonivy/ui-components';
 import { webSocketConnection, type Connection } from '@axonivy/jsonrpc';
+import { App, ClientContextProvider, initQueryClient, QueryProvider } from '@axonivy/log-view';
+import { LogClientJsonRpc } from '@axonivy/log-view-core';
+import { Flex, HotkeysProvider, Spinner, ThemeProvider, toast, Toaster } from '@axonivy/ui-components';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { webSocketBase, themeParam } from './url-helper';
 import { initTranslation } from './i18n';
+import './index.css';
+import { themeParam, webSocketBase } from './url-helper';
 
 export async function start() {
   const server = webSocketBase();
