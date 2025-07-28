@@ -114,9 +114,11 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
   };
 
   return (
-    <Flex direction='column' gap={2} className='master-content-container'>
-      <Flex gap={2}>
-        <div className='search-field'>{search.filter}</div>
+    <Flex direction='column' gap={2} className='runtimelog-content-container'>
+      <Flex alignItems='center' gap={2}>
+        <div className='runtimelog-search-field' style={{ flex: 1 }}>
+          {search.filter}
+        </div>
         <FilterOptions
           handleProjectFilterChange={setSelectedProjects}
           selectedProjects={selectedProjects}
@@ -126,16 +128,14 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
           isUserLog={isUserLog}
           projects={projectList}
         />
-        <Separator decorative orientation='vertical' className='menu-seperator' />
+        <Separator decorative orientation='vertical' className='menu-seperator' style={{ margin: 0 }} />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button title={t('label.menu')} aria-label={t('label.menu')}>
-              <IvyIcon icon={IvyIcons.Dots} />
-            </Button>
+            <Button size='large' icon={IvyIcons.Dots} title={t('label.menu')} aria-label={t('label.menu')} />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={clearlogs} className='dropdown-delete'>
+              <DropdownMenuItem onClick={clearlogs} className='runtimelog-dropdown-delete' style={{ color: 'var(--error-color)' }}>
                 <IvyIcon icon={IvyIcons.Trash} />
                 <Label>{t('label.removelogs')}</Label>
               </DropdownMenuItem>

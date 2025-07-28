@@ -1,18 +1,4 @@
-.runtimelog-view {
-  .master-content-container {
-    height: 100%;
-    overflow: auto;
-  }
-
-  .search-field {
-    flex: 1;
-  }
-
-  .menu-seperator {
-    margin: 0;
-  }
-}
-
-.dropdown-delete {
-  color: var(--error-color);
+.runtimelog-content-container {
+  height: 100%;
+  overflow: auto;
 }
