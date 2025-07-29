@@ -1,8 +1,7 @@
-.sub-dropdown {
-  width: 8em;
+.runtimelog-filter-button {
+  position: relative;
 }
-
-.filter-label {
+.runtimelog-filter-label {
   font-weight: normal;
   height: 2em;
   &.remove-filter-button {

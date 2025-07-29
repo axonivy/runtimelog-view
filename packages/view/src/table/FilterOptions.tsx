@@ -46,17 +46,17 @@ export const FilterOptions = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button title={t('label.filter')} aria-label={t('label.filter')}>
-          <IvyIcon icon={IvyIcons.Configuration} />
-          <Badges location='top-right' filtersSelected={selectedLevel === 'DEBUG' && selectedProjects.length === 0 ? 0 : 1}></Badges>
-        </Button>
+        <Flex alignItems='center' className='runtimelog-filter-button'>
+          <Button size='large' icon={IvyIcons.Configuration} title={t('label.filter')} aria-label={t('label.filter')} />
+          <Badges location='top-right' filtersSelected={selectedLevel === 'DEBUG' && selectedProjects.length === 0 ? 0 : 1} />
+        </Flex>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
         <DropdownMenuLabel>{t('label.filterBy')}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuSub>
-          <DropdownMenuLabel className='filter-label'>
+          <DropdownMenuLabel className='runtimelog-filter-label'>
             <Field direction='row' alignItems='center' gap={2}>
               <Checkbox checked={isUserLog} onCheckedChange={handleIsUserLogChange} />
               <Label>{t('label.userlog')}</Label>
@@ -64,12 +64,12 @@ export const FilterOptions = ({
           </DropdownMenuLabel>
         </DropdownMenuSub>
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger className='filter-label' disabled={projects.length === 0}>
+          <DropdownMenuSubTrigger className='runtimelog-filter-label' disabled={projects.length === 0}>
             <IvyIcon icon={IvyIcons.Folders} />
             {t('common.label.project')}
-            <Badges filtersSelected={selectedProjects.length}></Badges>
+            <Badges filtersSelected={selectedProjects.length} />
           </DropdownMenuSubTrigger>
-          <DropdownMenuSubContent className='sub-dropdown'>
+          <DropdownMenuSubContent className='runtimelog-sub-dropdown'>
             {projects.map(project => (
               <DropdownMenuCheckboxItem
                 className='project-dropdown'
@@ -86,12 +86,12 @@ export const FilterOptions = ({
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger className='filter-label'>
+          <DropdownMenuSubTrigger className='runtimelog-filter-label'>
             <IvyIcon icon={IvyIcons.PriorityHigh} />
             {t('label.minloglevel')}
-            <Badges filtersSelected={selectedLevel === 'DEBUG' ? 0 : 1}></Badges>
+            <Badges filtersSelected={selectedLevel === 'DEBUG' ? 0 : 1} />
           </DropdownMenuSubTrigger>
-          <DropdownMenuSubContent className='sub-dropdown'>
+          <DropdownMenuSubContent className='runtimelog-sub-dropdown'>
             <DropdownMenuRadioGroup
               className='radio-group'
               value={selectedLevel}
@@ -108,7 +108,8 @@ export const FilterOptions = ({
         <DropdownMenuSub>
           <Flex direction='row' justifyContent='center' gap={2}>
             <Button
-              className='filter-label remove-filter-button'
+              className='runtimelog-filter-label remove-filter-button'
+              style={{ color: 'var(--error-color)', width: '100%' }}
               onClick={() => {
                 handleLogLevelChange(true, 'DEBUG');
                 handleIsUserLogChange(false);
