@@ -1,26 +1,6 @@
 {
   "common": {
-    "label": {
-      "close": "",
-      "message": "",
-      "project": "",
-      "search": "",
-      "type": ""
-    }
+    "label": {}
   },
-  "label": {
-    "category": "",
-    "clearfilters": "",
-    "filter": "",
-    "filterBy": "",
-    "level": "",
-    "menu": "",
-    "minloglevel": "",
-    "removelogs": "",
-    "request": "",
-    "stack": "",
-    "time": "",
-    "userDialog": "",
-    "userlog": ""
-  }
+  "label": {}
 }
