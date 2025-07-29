@@ -18,6 +18,7 @@
     "lint:ci": "eslint -o eslint.xml -f checkstyle",
     "lint:fix": "eslint --fix",
     "lint:inspect": "eslint --inspect-config",
+    "i18n": "npm run i18n:extract",
     "i18n:extract": "lerna run i18n:extract",
     "i18n:ci": "lerna run i18n:ci",
     "protocol": "npm run -w @axonivy/log-view-protocol",
@@ -29,8 +30,8 @@
     "publish:next": "lerna publish --exact --canary --preid next --tag-version-prefix beta --pre-dist-tag next --no-git-tag-version --no-push --ignore-scripts --yes"
   },
   "devDependencies": {
-    "@axonivy/eslint-config": "~13.2.0-next.720",
-    "@axonivy/prettier-config": "~13.2.0-next.720",
+    "@axonivy/eslint-config": "~13.2.0-next.821.6618535",
+    "@axonivy/prettier-config": "~13.2.0-next.821.6618535",
     "@types/node": "^22.10.2",
     "@lerna-lite/cli": "^4.0.0",
     "@lerna-lite/publish": "^4.0.0",

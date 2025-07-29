@@ -10,17 +10,17 @@
   },
   "label": {
     "category": "Category",
-    "clearfilters": "Remove all filters",
     "filter": "Filters",
     "filterBy": "Filter by",
     "level": "Level",
     "menu": "Menu",
-    "minloglevel": "Min Log Level",
-    "removelogs": "Delete All Logs",
+    "minLogLevel": "Min Log Level",
+    "removeLogs": "Delete All Logs",
     "request": "Request",
+    "resetAllFilters": "Remove all filters",
     "stack": "Stack",
     "time": "Time",
     "userDialog": "User Dialog",
-    "userlog": "Show only User Logs"
+    "userLog": "Show only User Logs"
   }
 }
