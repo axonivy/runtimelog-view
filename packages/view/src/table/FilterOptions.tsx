@@ -4,6 +4,7 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuSeparator,
@@ -19,7 +20,6 @@ import {
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { Badges } from './Badges';
-import './FilterOptions.css';
 import { FilterSerenities } from './FilterSerenities';
 import { type LogLevel } from './RuntimeLogTable';
 
@@ -46,7 +46,7 @@ export const FilterOptions = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Flex alignItems='center' className='runtimelog-filter-button'>
+        <Flex alignItems='center' className='runtimelog-filter-button' style={{ position: 'relative' }}>
           <Button size='large' icon={IvyIcons.Configuration} title={t('label.filter')} aria-label={t('label.filter')} />
           <Badges location='top-right' filtersSelected={selectedLevel === 'DEBUG' && selectedProjects.length === 0 ? 0 : 1} />
         </Flex>
@@ -59,7 +59,7 @@ export const FilterOptions = ({
           <DropdownMenuLabel className='runtimelog-filter-label'>
             <Field direction='row' alignItems='center' gap={2}>
               <Checkbox checked={isUserLog} onCheckedChange={handleIsUserLogChange} />
-              <Label>{t('label.userlog')}</Label>
+              <Label>{t('label.userLog')}</Label>
             </Field>
           </DropdownMenuLabel>
         </DropdownMenuSub>
@@ -88,7 +88,7 @@ export const FilterOptions = ({
         <DropdownMenuSub>
           <DropdownMenuSubTrigger className='runtimelog-filter-label'>
             <IvyIcon icon={IvyIcons.PriorityHigh} />
-            {t('label.minloglevel')}
+            {t('label.minLogLevel')}
             <Badges filtersSelected={selectedLevel === 'DEBUG' ? 0 : 1} />
           </DropdownMenuSubTrigger>
           <DropdownMenuSubContent className='runtimelog-sub-dropdown'>
@@ -105,21 +105,18 @@ export const FilterOptions = ({
             </DropdownMenuRadioGroup>
           </DropdownMenuSubContent>
         </DropdownMenuSub>
-        <DropdownMenuSub>
-          <Flex direction='row' justifyContent='center' gap={2}>
-            <Button
-              className='runtimelog-filter-label remove-filter-button'
-              style={{ color: 'var(--error-color)', width: '100%' }}
-              onClick={() => {
-                handleLogLevelChange(true, 'DEBUG');
-                handleIsUserLogChange(false);
-                handleProjectFilterChange([]);
-              }}
-            >
-              {t('label.clearfilters')}
-            </Button>
-          </Flex>
-        </DropdownMenuSub>
+        <DropdownMenuItem
+          className='runtimelog-filter-label remove-filter-button'
+          style={{ color: 'var(--error-color)' }}
+          onSelect={() => {
+            handleLogLevelChange(true, 'DEBUG');
+            handleIsUserLogChange(false);
+            handleProjectFilterChange([]);
+          }}
+        >
+          <IvyIcon icon={IvyIcons.Reset} />
+          {t('label.resetAllFilters')}
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

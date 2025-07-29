@@ -59,8 +59,7 @@ test.describe('DataTable filter & sorting', () => {
     await view.logFilter.filterProject('Portal');
     const rows = page.locator('table tbody tr');
     await expect(rows).toHaveCount(1);
-    await view.logFilter.openFilter();
-    await page.getByRole('button', { name: 'Remove all filters' }).click();
+    await page.getByRole('menuitem', { name: 'Remove all filters' }).click();
     await expect(rows).toHaveCount(7);
   });
 

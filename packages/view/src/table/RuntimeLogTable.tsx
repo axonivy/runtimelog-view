@@ -137,7 +137,7 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={clearlogs} className='runtimelog-dropdown-delete' style={{ color: 'var(--error-color)' }}>
                 <IvyIcon icon={IvyIcons.Trash} />
-                <Label>{t('label.removelogs')}</Label>
+                <Label>{t('label.removeLogs')}</Label>
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
