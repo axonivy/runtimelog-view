@@ -1,16 +1,7 @@
 .runtimelog-badges-circle {
-  width: 10px;
-  height: 10px;
-  font-size: 8px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--P300);
-  color: var(--background);
   &[data-location='top-right'] {
     position: absolute;
-    right: 0px;
-    top: 0px;
+    right: -3px;
+    top: -3px;
   }
 }
