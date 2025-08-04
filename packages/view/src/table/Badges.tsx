@@ -1,3 +1,4 @@
+import { Badge } from '@axonivy/ui-components';
 import './Badges.css';
 
 export const Badges = ({ filtersSelected, location }: { filtersSelected: number; location?: 'top-right' }) => {
@@ -5,8 +6,8 @@ export const Badges = ({ filtersSelected, location }: { filtersSelected: number;
     return null;
   }
   return (
-    <span className='runtimelog-badges-circle' data-location={location}>
+    <Badge size='xs' round className='runtimelog-badges-circle' data-location={location}>
       {filtersSelected}
-    </span>
+    </Badge>
   );
 };
