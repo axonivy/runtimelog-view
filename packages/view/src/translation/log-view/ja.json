@@ -1,6 +1,7 @@
 {
   "common": {
-    "label": {}
-  },
-  "label": {}
+    "label": {
+      "close": "閉じる"
+    }
+  }
 }
