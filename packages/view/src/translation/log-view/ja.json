@@ -1,7 +1,26 @@
 {
   "common": {
     "label": {
-      "close": "閉じる"
+      "close": "閉じる",
+      "search": "検索",
+      "message": "メッセージ",
+      "project": "プロジェクト",
+      "type": "タイプ"
     }
+  },
+  "label": {
+    "filterBy": "フィルター条件",
+    "category": "カテゴリー",
+    "filter": "フィルター",
+    "level": "レベル",
+    "menu": "メニュー",
+    "minLogLevel": "最小ログレベル",
+    "removeLogs": "すべてのログを削除",
+    "request": "リクエスト",
+    "resetAllFilters": "すべてのフィルターを削除する",
+    "stack": "スタック",
+    "time": "時間",
+    "userDialog": "ユーザーダイアログ",
+    "userLog": "ユーザーログのみ表示する"
   }
 }
