@@ -1,7 +1,7 @@
 import type { Level } from '@axonivy/log-view-protocol';
-import { IvyIcon } from '@axonivy/ui-components';
+import { Badge, IvyIcon } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import './SeverityIcon.css';
+import type { ComponentProps } from 'react';
 
 type LogLevel = Exclude<Level, 'OFF' | 'TRACE' | 'ALL'>;
 
@@ -11,8 +11,18 @@ const icons: Record<LogLevel, IvyIcons> = {
   WARN: IvyIcons.Caution,
   ERROR: IvyIcons.ErrorXMark,
   FATAL: IvyIcons.Error
-};
+} as const;
+
+const variant: Record<LogLevel, ComponentProps<typeof Badge>['variant']> = {
+  DEBUG: 'secondary',
+  INFO: 'blue',
+  WARN: 'orange',
+  ERROR: 'red',
+  FATAL: 'purple'
+} as const;
 
 export const SeverityIcon = ({ level }: { level: LogLevel }) => (
-  <IvyIcon className={`log-level-icon ${level.toLowerCase()}`} icon={icons[level] || IvyIcons.InfoCircle} />
+  <Badge size='s' round variant={variant[level]}>
+    <IvyIcon icon={icons[level] || IvyIcons.InfoCircle} />
+  </Badge>
 );
