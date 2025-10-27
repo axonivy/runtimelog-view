@@ -19,8 +19,7 @@ import {
   useTableSort
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { useReactTable } from '@tanstack/react-table';
-import { getCoreRowModel, type ColumnDef } from '@tanstack/table-core';
+import { getCoreRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FilterOptions } from './FilterOptions';

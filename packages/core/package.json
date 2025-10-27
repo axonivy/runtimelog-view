@@ -14,7 +14,7 @@
     "src"
   ],
   "dependencies": {
-    "@axonivy/log-view-protocol": "~13.2.0-next"
+    "@axonivy/log-view-protocol": "workspace:~13.2.0-next"
   },
   "peerDependencies": {
     "@axonivy/jsonrpc": "~13.2.0-next"
@@ -29,8 +29,8 @@
   "scripts": {
     "clean": "rimraf lib tsconfig.tsbuildinfo",
     "build": "tsc --build && tscp",
-    "package": "npm run clean && vite build && npm run build",
-    "build:clean": "npm clean && npm build",
+    "package": "pnpm run clean && vite build && pnpm run build",
+    "build:clean": "pnpm run clean && pnpm run build",
     "type": "tsc --noEmit"
   }
 }
