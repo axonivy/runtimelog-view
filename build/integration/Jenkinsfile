@@ -20,8 +20,8 @@ pipeline {
         script {
           catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
             docker.build('node-webtest', '-f build/Dockerfile.playwright .').inside {
-              sh 'npm run update:axonivy:next'
-              sh 'npm install && npm run package'
+              sh 'pnpm run update:axonivy:next'
+              sh 'pnpm install --no-frozen-lockfile && pnpm run package'
               dir ('playwright/log-test-project') {
                 maven cmd: "-ntp verify -Dengine.page.url=${params.engineSource} -Dwebtest.cmd=webtest:${browser()}"
               }
@@ -45,17 +45,17 @@ pipeline {
             docker.build('node', '-f build/Dockerfile.node .').inside {
               def branchName = env.BRANCH_NAME.replace("/", "%252F")
               sh '''
-                npm install
-                npm run protocol clean
+                pnpm install --no-frozen-lockfile
+                pnpm run protocol clean
 
                 artifacts="https://jenkins.ivyteam.io/job/core_json-schema/job/'''+branchName+'''/lastSuccessfulBuild/artifact"
                 devSchema="${artifacts}/workspace/ch.ivyteam.ivy.runtime.log.lsp.schema/target/schema/log/*/log-tsgen.json/*zip*/schema.zip"
                 curl -o schema.zip ${devSchema}
                 unzip -j schema.zip
                 mv $PWD/log-tsgen.json $PWD/log.json
-                npm run protocol generate $PWD/log.json
+                pnpm run protocol generate $PWD/log.json
 
-                npm run build && npm run lint:ci
+                pnpm run build && pnpm run lint:ci
               '''
             }
           }
