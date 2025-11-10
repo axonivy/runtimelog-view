@@ -11,14 +11,6 @@ export function themeParam(): 'dark' | 'light' {
   return 'light';
 }
 
-export function readonlyParam(): boolean {
-  const readonly = parameter('readonly');
-  if (readonly === 'true') {
-    return true;
-  }
-  return false;
-}
-
 export function webSocketBase(): string {
   return `${isSecureConnection() ? 'wss' : 'ws'}://${server()}`;
 }
