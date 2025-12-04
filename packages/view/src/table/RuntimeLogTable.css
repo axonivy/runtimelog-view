@@ -1,4 +1,10 @@
 .runtimelog-content-container {
   height: 100%;
   overflow: auto;
+  .overflow-cell {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
 }

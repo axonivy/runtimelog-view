@@ -36,7 +36,15 @@ export const generateMockData = (): RuntimeLogEntry[] => [
   },
   {
     level: LevelValues.ERROR,
-    message: 'Process intermediate event',
+    message: `[2025-12-04 08:49:47.606][ERROR][ch.ivyteam.ivy.resource.datamodel.framework][ModalContext]{executionContext=SYSTEM}
+Error during visiting resource deltas
+org.eclipse.core.runtime.CoreException: Error while notifying listeners
+	at ch.ivyteam.ivy.resource.datamodel.framework.AbstractResourceDataModelProvider$ResourceDeltaVisitor.visit(AbstractResourceDataModelProvider.java:417)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:87)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:87)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:87)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:61)`,
     category: 'USER',
     processElement: '',
     request: '',

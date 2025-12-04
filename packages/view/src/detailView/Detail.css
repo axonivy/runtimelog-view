@@ -2,4 +2,7 @@
   .detail-view-key {
     font-weight: bold;
   }
+  .detail-view-value {
+    overflow: auto;
+  }
 }

@@ -70,7 +70,7 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
       cell: cell => (
         <Flex alignItems='center' gap={2}>
           <SeverityIcon level={cell.getValue() as LogLevel} />
-          <Label>{cell.getValue()}</Label>
+          <span>{cell.getValue()}</span>
         </Flex>
       ),
       maxSize: 30,
@@ -89,7 +89,11 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
     {
       accessorKey: 'message',
       header: ({ column }) => <SortableHeader column={column} name={t('common.label.message')} />,
-      cell: cell => cell.getValue()
+      cell: cell => (
+        <div className='overflow-cell' title={cell.getValue()}>
+          {cell.getValue()}
+        </div>
+      )
     }
   ];
 

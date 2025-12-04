@@ -1,4 +1,4 @@
-import { Flex, Label } from '@axonivy/ui-components';
+import { Flex } from '@axonivy/ui-components';
 
 interface LogEntryDetailProps {
   label: string;
@@ -10,8 +10,10 @@ export const LogEntryDetail = ({ label, value }: LogEntryDetailProps) => {
   }
   return (
     <Flex gap={2} direction='column'>
-      <Label className='detail-view-key'>{label}</Label>
-      {value}
+      <span className='detail-view-key'>{label}</span>
+      <span className='detail-view-value'>
+        <pre>{value}</pre>
+      </span>
     </Flex>
   );
 };
