@@ -1,8 +1,21 @@
 .runtimelog-view {
+  .detail-view {
+    height: 100%;
+  }
+  .detail-scroll-view {
+    height: 100%;
+    overflow: auto;
+  }
   .detail-view-key {
     font-weight: bold;
   }
+  .grow {
+    flex-grow: 1;
+  }
   .detail-view-value {
     overflow: auto;
+    pre {
+      margin: 0;
+    }
   }
 }

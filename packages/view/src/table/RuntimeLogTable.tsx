@@ -10,7 +10,6 @@ import {
   IvyIcon,
   Label,
   selectRow,
-  Separator,
   SortableHeader,
   Table,
   TableBody,
@@ -131,7 +130,6 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
           isUserLog={isUserLog}
           projects={projectList}
         />
-        <Separator decorative orientation='vertical' className='menu-seperator' style={{ margin: 0 }} />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button size='large' icon={IvyIcons.Dots} title={t('label.menu')} aria-label={t('label.menu')} />
