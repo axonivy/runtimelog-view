@@ -20,17 +20,19 @@ export const Detail = ({ RuntimeLogEntry, CloseDetailView }: ViewProps) => {
         </Button>
       </Flex>
 
-      <LogEntryDetail label={t('label.time')} value={RuntimeLogEntry.timestamp} />
-      <LogEntryDetail label={t('label.request')} value={RuntimeLogEntry.request} />
-      <LogEntryDetail label={t('label.userDialog')} value={RuntimeLogEntry.userDialogId} />
+      <Flex direction='column' gap={4} className='detail-scroll-view'>
+        <LogEntryDetail label={t('label.time')} value={RuntimeLogEntry.timestamp} />
+        <LogEntryDetail label={t('label.request')} value={RuntimeLogEntry.request} />
+        <LogEntryDetail label={t('label.userDialog')} value={RuntimeLogEntry.userDialogId} />
 
-      <Flex gap={2} direction='row'>
-        <LogEntryDetail label={t('label.level')} value={RuntimeLogEntry.level} />
-        <LogEntryDetail label={t('label.category')} value={RuntimeLogEntry.category} />
+        <Flex gap={2} direction='row'>
+          <LogEntryDetail label={t('label.level')} value={RuntimeLogEntry.level} className='grow' />
+          <LogEntryDetail label={t('label.category')} value={RuntimeLogEntry.category} className='grow' />
+        </Flex>
+
+        <LogEntryDetail label={t('common.label.message')} value={RuntimeLogEntry.message} />
+        <LogEntryDetail label={t('label.stack')} value={RuntimeLogEntry.throwableInformationMsg} />
       </Flex>
-
-      <LogEntryDetail label={t('common.label.message')} value={RuntimeLogEntry.message} />
-      <LogEntryDetail label={t('label.stack')} value={RuntimeLogEntry.throwableInformationMsg} />
     </Flex>
   );
 };
