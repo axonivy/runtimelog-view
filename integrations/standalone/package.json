@@ -9,12 +9,12 @@
     "url": "https://github.com/axonivy/runtimelog-view"
   },
   "dependencies": {
-    "@axonivy/jsonrpc": "~13.2.0-next.940.7631360",
+    "@axonivy/jsonrpc": "~14.0.0-next.957.4046f5f",
     "@axonivy/log-view": "workspace:~14.0.0-next",
     "@axonivy/log-view-core": "workspace:~14.0.0-next",
     "@axonivy/log-view-protocol": "workspace:~14.0.0-next",
-    "@axonivy/ui-components": "~13.2.0-next.940.7631360",
-    "@axonivy/ui-icons": "~13.2.0-next.940.7631360",
+    "@axonivy/ui-components": "~14.0.0-next.957.4046f5f",
+    "@axonivy/ui-icons": "~14.0.0-next.957.4046f5f",
     "@tanstack/react-query": "^5.67.3",
     "@tanstack/react-query-devtools": "^5.67.3",
     "i18next": "^25.0.0",
