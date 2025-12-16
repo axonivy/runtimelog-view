@@ -17,7 +17,7 @@
     "@axonivy/log-view-protocol": "workspace:~14.0.0-next"
   },
   "peerDependencies": {
-    "@axonivy/jsonrpc": "~13.2.0-next"
+    "@axonivy/jsonrpc": "~14.0.0-next"
   },
   "devDependencies": {
     "vite": "^7.0.0"
