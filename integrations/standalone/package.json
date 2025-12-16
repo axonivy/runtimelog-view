@@ -1,6 +1,6 @@
 {
   "name": "@axonivy/log-view-standalone",
-  "version": "13.2.0-next",
+  "version": "14.0.0-next",
   "private": true,
   "author": "Axon Ivy AG",
   "homepage": "https://developer.axonivy.com/",
@@ -9,10 +9,10 @@
     "url": "https://github.com/axonivy/runtimelog-view"
   },
   "dependencies": {
-    "@axonivy/log-view": "workspace:~13.2.0-next",
-    "@axonivy/log-view-core": "workspace:~13.2.0-next",
-    "@axonivy/log-view-protocol": "workspace:~13.2.0-next",
     "@axonivy/jsonrpc": "~13.2.0-next.940.7631360",
+    "@axonivy/log-view": "workspace:~14.0.0-next",
+    "@axonivy/log-view-core": "workspace:~14.0.0-next",
+    "@axonivy/log-view-protocol": "workspace:~14.0.0-next",
     "@axonivy/ui-components": "~13.2.0-next.940.7631360",
     "@axonivy/ui-icons": "~13.2.0-next.940.7631360",
     "@tanstack/react-query": "^5.67.3",
