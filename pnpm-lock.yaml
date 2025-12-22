@@ -45,13 +45,13 @@ importers:
         specifier: ~13.2.0-next.940.7631360
         version: 13.2.0-next.940.7631360
       '@axonivy/log-view':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~13.2.1-next
         version: link:../../packages/view
       '@axonivy/log-view-core':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~13.2.1-next
         version: link:../../packages/core
       '@axonivy/log-view-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~13.2.1-next
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: ~13.2.0-next.940.7631360
@@ -100,7 +100,7 @@ importers:
         specifier: ~13.2.0-next
         version: 13.2.0-next.940.7631360
       '@axonivy/log-view-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~13.2.1-next
         version: link:../protocol
     devDependencies:
       vite:
@@ -116,7 +116,7 @@ importers:
   packages/view:
     dependencies:
       '@axonivy/log-view-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~13.2.1-next
         version: link:../protocol
       '@tanstack/react-query':
         specifier: ^5.32

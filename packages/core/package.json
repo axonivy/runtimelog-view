@@ -1,6 +1,6 @@
 {
   "name": "@axonivy/log-view-core",
-  "version": "13.2.0-next",
+  "version": "13.2.1-next",
   "private": false,
   "license": "Apache-2.0",
   "author": "Axon Ivy AG",
@@ -14,7 +14,7 @@
     "src"
   ],
   "dependencies": {
-    "@axonivy/log-view-protocol": "workspace:~13.2.0-next"
+    "@axonivy/log-view-protocol": "workspace:~13.2.1-next"
   },
   "peerDependencies": {
     "@axonivy/jsonrpc": "~13.2.0-next"
