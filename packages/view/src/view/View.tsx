@@ -1,5 +1,5 @@
 import type { RuntimeLogEntry } from '@axonivy/log-view-protocol';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@axonivy/ui-components';
+import { ResizableGroup, ResizableHandle, ResizablePanel } from '@axonivy/ui-components';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo, useState } from 'react';
 import { useClient } from '../context/ClientContext';
@@ -44,20 +44,20 @@ export const View = () => {
 
   return (
     <div className='runtimelog-view'>
-      <ResizablePanelGroup direction='horizontal' style={{ gap: 'var(--size-3)' }}>
-        <ResizablePanel defaultSize={75} minSize={20}>
+      <ResizableGroup orientation='horizontal' style={{ gap: 'var(--size-3)' }}>
+        <ResizablePanel defaultSize='75%' minSize='20%'>
           {data && <RuntimeLogTable clearlogs={handleClearLogs} RuntimeLogEntry={data} onRowClick={rowData => setSelectedRow(rowData)} />}
         </ResizablePanel>
 
         {selectedRow && (
           <>
             <ResizableHandle />
-            <ResizablePanel defaultSize={25} minSize={10}>
+            <ResizablePanel defaultSize='25%' minSize='20%'>
               <Detail RuntimeLogEntry={selectedRow} CloseDetailView={() => setSelectedRow(null)} />
             </ResizablePanel>
           </>
         )}
-      </ResizablePanelGroup>
+      </ResizableGroup>
     </div>
   );
 };
