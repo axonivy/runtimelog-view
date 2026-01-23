@@ -17,8 +17,7 @@ tsGen.DEFAULT_OPTIONS.bannerComment = `
 `;
 
 const tsOut = path.resolve('./src/data/log.ts');
-var schemaUri =
-  'https://jenkins.ivyteam.io/job/core_json-schema/job/master/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.runtime.log.lsp.schema/target/schema/log/13.1.0/log-tsgen.json';
+var schemaUri = 'https://jenkins.ivyteam.io/job/core_json-schema/job/master/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.runtime.log.lsp.schema/target/editors.ts/14.0/runtime-log-tsgen.json';
 
 const args = process.argv.slice(2);
 if (args.length > 0) {
