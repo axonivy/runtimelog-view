@@ -1,6 +1,6 @@
 import { expect, type Page } from '@playwright/test';
 
-export class logFilter {
+export class LogFilter {
   protected readonly page: Page;
 
   constructor(page: Page) {
@@ -14,7 +14,7 @@ export class logFilter {
 
   async changeFilter(label: string) {
     await this.openFilter();
-    await this.page.getByRole('menuitem', { name: ' Min Log Level' }).focus();
+    await this.page.getByRole('menuitem', { name: 'Min Log Level' }).focus();
     await this.page.keyboard.press('Enter');
     await this.page.getByRole('menuitemradio', { name: label }).focus();
     await this.page.keyboard.press('Enter');
@@ -23,6 +23,7 @@ export class logFilter {
   async filterUserLogs() {
     await this.openFilter();
     await this.page.getByRole('checkbox', { name: 'Show only User Logs' }).click();
+    await this.page.keyboard.press('Escape');
   }
 
   async filterProject(project: string) {
@@ -31,5 +32,11 @@ export class logFilter {
     await this.page.keyboard.press('Enter');
     await this.page.getByRole('menuitemcheckbox', { name: project }).focus();
     await this.page.keyboard.press('Enter');
+    await this.page.keyboard.press('Escape');
+  }
+
+  async removeAllFilters() {
+    await this.openFilter();
+    await this.page.getByRole('menuitem', { name: 'Remove all filters' }).click();
   }
 }

@@ -1,7 +1,0 @@
-.runtimelog-badges-circle {
-  &[data-location='top-right'] {
-    position: absolute;
-    right: -3px;
-    top: -3px;
-  }
-}

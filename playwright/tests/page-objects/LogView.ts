@@ -1,5 +1,6 @@
 import type { Page } from '@playwright/test';
-import { logFilter } from './logFilter';
+import { Detail } from './Detail';
+import { Main } from './Main';
 
 export class LogView {
   readonly page: Page;
@@ -19,7 +20,11 @@ export class LogView {
     return await this.open(page, 'mock.html');
   }
 
-  get logFilter() {
-    return new logFilter(this.page);
+  get main() {
+    return new Main(this.page);
+  }
+
+  get detail() {
+    return new Detail(this.page);
   }
 }
