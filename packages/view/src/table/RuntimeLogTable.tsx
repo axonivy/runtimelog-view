@@ -8,7 +8,6 @@ import {
   DropdownMenuTrigger,
   Flex,
   IvyIcon,
-  Label,
   selectRow,
   SortableHeader,
   Table,
@@ -23,7 +22,6 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FilterOptions } from './FilterOptions';
 import { LogRow } from './LogRow';
-import './RuntimeLogTable.css';
 import { SeverityIcon } from './SeverityIcon';
 
 interface ViewProps {
@@ -89,7 +87,7 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
       accessorKey: 'message',
       header: ({ column }) => <SortableHeader column={column} name={t('common.label.message')} />,
       cell: cell => (
-        <div className='overflow-cell' title={cell.getValue()}>
+        <div className='truncate' title={cell.getValue()}>
           {cell.getValue()}
         </div>
       )
@@ -116,11 +114,9 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
   };
 
   return (
-    <Flex direction='column' gap={2} className='runtimelog-content-container'>
+    <Flex direction='column' gap={2} className='h-full overflow-auto'>
       <Flex alignItems='center' gap={2}>
-        <div className='runtimelog-search-field' style={{ flex: 1 }}>
-          {search.filter}
-        </div>
+        <div className='flex-1'>{search.filter}</div>
         <FilterOptions
           handleProjectFilterChange={setSelectedProjects}
           selectedProjects={selectedProjects}
@@ -136,16 +132,16 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={clearlogs} className='runtimelog-dropdown-delete' style={{ color: 'var(--error-color)' }}>
+              <DropdownMenuItem onClick={clearlogs} className='text-error'>
                 <IvyIcon icon={IvyIcons.Trash} />
-                <Label>{t('label.removeLogs')}</Label>
+                <span>{t('label.removeLogs')}</span>
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
       </Flex>
 
-      <Table style={{ overflowX: 'unset' }}>
+      <Table>
         <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => selectRow(table)} />
         <TableBody>
           {table.getRowModel().rows.map(row => (

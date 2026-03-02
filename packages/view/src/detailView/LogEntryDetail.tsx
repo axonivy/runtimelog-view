@@ -11,8 +11,8 @@ export const LogEntryDetail = ({ label, value, className }: LogEntryDetailProps)
   }
   return (
     <Flex gap={1} direction='column' className={className}>
-      <span className='detail-view-key'>{label}</span>
-      <span className='detail-view-value'>
+      <span className='font-bold'>{label}</span>
+      <span className='overflow-auto'>
         <pre>{value}</pre>
       </span>
     </Flex>

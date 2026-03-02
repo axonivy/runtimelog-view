@@ -19,7 +19,7 @@ import {
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
-import { Badges } from './Badges';
+import { FilterBadge } from './FilterBadge';
 import { FilterSerenities } from './FilterSerenities';
 import { type LogLevel } from './RuntimeLogTable';
 
@@ -46,9 +46,9 @@ export const FilterOptions = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Flex alignItems='center' className='runtimelog-filter-button' style={{ position: 'relative' }}>
+        <Flex alignItems='center' className='relative'>
           <Button size='large' icon={IvyIcons.Configuration} title={t('label.filter')} aria-label={t('label.filter')} />
-          <Badges location='top-right' filtersSelected={selectedLevel === 'DEBUG' && selectedProjects.length === 0 ? 0 : 1} />
+          <FilterBadge location='top-right' filtersSelected={selectedLevel === 'DEBUG' && selectedProjects.length === 0 ? 0 : 1} />
         </Flex>
       </DropdownMenuTrigger>
 
@@ -56,7 +56,7 @@ export const FilterOptions = ({
         <DropdownMenuLabel>{t('label.filterBy')}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuSub>
-          <DropdownMenuLabel className='runtimelog-filter-label'>
+          <DropdownMenuLabel>
             <Field direction='row' alignItems='center' gap={2}>
               <Checkbox checked={isUserLog} onCheckedChange={handleIsUserLogChange} />
               <Label>{t('label.userLog')}</Label>
@@ -64,15 +64,14 @@ export const FilterOptions = ({
           </DropdownMenuLabel>
         </DropdownMenuSub>
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger className='runtimelog-filter-label' disabled={projects.length === 0}>
+          <DropdownMenuSubTrigger disabled={projects.length === 0}>
             <IvyIcon icon={IvyIcons.Folders} />
             {t('common.label.project')}
-            <Badges filtersSelected={selectedProjects.length} />
+            <FilterBadge filtersSelected={selectedProjects.length} />
           </DropdownMenuSubTrigger>
-          <DropdownMenuSubContent className='runtimelog-sub-dropdown'>
+          <DropdownMenuSubContent>
             {projects.map(project => (
               <DropdownMenuCheckboxItem
-                className='project-dropdown'
                 key={project}
                 checked={selectedProjects.includes(project)}
                 onCheckedChange={(checked: boolean) =>
@@ -86,17 +85,13 @@ export const FilterOptions = ({
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger className='runtimelog-filter-label'>
+          <DropdownMenuSubTrigger>
             <IvyIcon icon={IvyIcons.PriorityHigh} />
             {t('label.minLogLevel')}
-            <Badges filtersSelected={selectedLevel === 'DEBUG' ? 0 : 1} />
+            <FilterBadge filtersSelected={selectedLevel === 'DEBUG' ? 0 : 1} />
           </DropdownMenuSubTrigger>
-          <DropdownMenuSubContent className='runtimelog-sub-dropdown'>
-            <DropdownMenuRadioGroup
-              className='radio-group'
-              value={selectedLevel}
-              onValueChange={value => handleLogLevelChange(true, value as LogLevel)}
-            >
+          <DropdownMenuSubContent>
+            <DropdownMenuRadioGroup value={selectedLevel} onValueChange={value => handleLogLevelChange(true, value as LogLevel)}>
               <FilterSerenities level='DEBUG' />
               <FilterSerenities level='INFO' />
               <FilterSerenities level='WARN' />
@@ -106,8 +101,7 @@ export const FilterOptions = ({
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuItem
-          className='runtimelog-filter-label remove-filter-button'
-          style={{ color: 'var(--error-color)' }}
+          className='text-error'
           onSelect={() => {
             handleLogLevelChange(true, 'DEBUG');
             handleIsUserLogChange(false);

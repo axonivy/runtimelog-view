@@ -9,12 +9,12 @@
     "url": "https://github.com/axonivy/runtimelog-view"
   },
   "dependencies": {
-    "@axonivy/jsonrpc": "~14.0.0-next.978.49cf9dd",
+    "@axonivy/jsonrpc": "~14.0.0-next.1039.4d8a559",
     "@axonivy/log-view": "workspace:~14.0.0-next",
     "@axonivy/log-view-core": "workspace:~14.0.0-next",
     "@axonivy/log-view-protocol": "workspace:~14.0.0-next",
-    "@axonivy/ui-components": "~14.0.0-next.978.49cf9dd",
-    "@axonivy/ui-icons": "~14.0.0-next.978.49cf9dd",
+    "@axonivy/ui-components": "~14.0.0-next.1039.4d8a559",
+    "@axonivy/ui-icons": "~14.0.0-next.1039.4d8a559",
     "@tanstack/react-query": "^5.67.3",
     "@tanstack/react-query-devtools": "^5.67.3",
     "i18next": "^25.0.0",
@@ -22,11 +22,13 @@
     "react-i18next": "^16.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^5.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "tailwindcss": "^4.2.1",
     "vite": "^7.0.0"
   },
   "scripts": {
