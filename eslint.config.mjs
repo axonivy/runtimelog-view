@@ -21,5 +21,9 @@ export default config.defineConfig(
     rules: {
       '@typescript-eslint/no-explicit-any': 'off'
     }
+  },
+  {
+    name: 'ignore files',
+    ignores: ['packages/protocol/src/data/log.ts']
   }
 );
