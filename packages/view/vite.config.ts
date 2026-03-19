@@ -19,7 +19,7 @@ export default defineConfig({
       fileName: 'view',
       formats: ['es']
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: [
         '@axonivy/ui-components',
         '@axonivy/ui-icons',
