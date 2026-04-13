@@ -1,14 +1,14 @@
 import type { LogClient } from '@axonivy/log-view-protocol';
 import type { ReactNode } from 'react';
-import { createContext, useContext } from 'react';
+import { createContext, use } from 'react';
 
 export interface ClientContext {
   client: LogClient;
 }
 
-const ClientContextInstance = createContext<ClientContext | undefined>(undefined);
+const ClientContext = createContext<ClientContext | undefined>(undefined);
 export const useClient = (): LogClient => {
-  const context = useContext(ClientContextInstance);
+  const context = use(ClientContext);
   if (context === undefined) {
     throw new Error('useClient must be used within a ClientContext');
   }
@@ -16,5 +16,5 @@ export const useClient = (): LogClient => {
 };
 
 export const ClientContextProvider = ({ client, children }: { client: LogClient; children: ReactNode }) => {
-  return <ClientContextInstance.Provider value={{ client }}>{children}</ClientContextInstance.Provider>;
+  return <ClientContext value={{ client }}>{children}</ClientContext>;
 };
