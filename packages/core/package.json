@@ -20,7 +20,7 @@
     "@axonivy/jsonrpc": "~14.0.0-next"
   },
   "devDependencies": {
-    "vite": "^8.1.5"
+    "vite": "^8.2.0"
   },
   "type": "module",
   "types": "lib/index.d.ts",
