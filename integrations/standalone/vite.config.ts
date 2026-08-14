@@ -13,9 +13,9 @@ export default defineConfig({
   server: { port: 3000 },
   resolve: {
     alias: {
-      '@axonivy/log-view': resolve(__dirname, '../../packages/view/src'),
-      '@axonivy/log-view-protocol': resolve(__dirname, '../../packages/protocol/src'),
-      '@axonivy/log-view-core': resolve(__dirname, '../../packages/core/src')
+      '@axonivy/log-view': resolve(import.meta.dirname, '../../packages/view/src'),
+      '@axonivy/log-view-protocol': resolve(import.meta.dirname, '../../packages/protocol/src'),
+      '@axonivy/log-view-core': resolve(import.meta.dirname, '../../packages/core/src')
     }
   },
   base: './'

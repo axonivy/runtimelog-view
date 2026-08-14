@@ -8,14 +8,14 @@ export default defineConfig({
   plugins: [tailwindcss(), react(), dts({ tsconfigPath: './tsconfig.production.json' })],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src')
+      '@': resolve(import.meta.dirname, './src')
     }
   },
   build: {
     outDir: 'lib',
     sourcemap: true,
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: resolve(import.meta.dirname, 'src/index.ts'),
       fileName: 'view',
       formats: ['es']
     },
@@ -39,8 +39,8 @@ export default defineConfig({
     dir: 'src',
     include: ['**/*.test.ts?(x)'],
     alias: {
-      'test-utils': resolve(__dirname, 'src/test-utils/test-utils.tsx'),
-      '@axonivy/log-view-protocol': resolve(__dirname, '../../packages/protocol/src')
+      'test-utils': resolve(import.meta.dirname, 'src/test-utils/test-utils.tsx'),
+      '@axonivy/log-view-protocol': resolve(import.meta.dirname, '../../packages/protocol/src')
     },
     globals: true,
     environment: 'jsdom',
