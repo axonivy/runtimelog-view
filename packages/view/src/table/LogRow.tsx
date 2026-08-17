@@ -1,9 +1,9 @@
 import type { RuntimeLogEntry } from '@axonivy/log-view-protocol';
-import { SelectRow, TableCell } from '@axonivy/ui-components';
+import { SelectRow, TableCell, type DataTableFeatures } from '@axonivy/ui-components';
 import { flexRender, type Row } from '@tanstack/react-table';
 
 type LogRowProps = {
-  row: Row<RuntimeLogEntry>;
+  row: Row<DataTableFeatures, RuntimeLogEntry>;
   onRowClick: (rowData: RuntimeLogEntry) => void;
 };
 

@@ -1,6 +1,7 @@
 import type { Level, RuntimeLogEntry } from '@axonivy/log-view-protocol';
 import {
   Button,
+  dataTableHelper,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
@@ -12,12 +13,12 @@ import {
   SortableHeader,
   Table,
   TableBody,
+  TableGlobalFilter,
   TableResizableHeader,
-  useTableGlobalFilter,
-  useTableSort
+  type DataTableFeatures
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { getCoreRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
+import { useTable } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FilterOptions } from './FilterOptions';
@@ -40,10 +41,10 @@ export const levelPriority: Record<LogLevel, number> = {
   FATAL: 4
 };
 
+const { columnHelper, tableOptions } = dataTableHelper<RuntimeLogEntry>();
+
 export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: ViewProps) => {
   const { t } = useTranslation();
-  const sort = useTableSort();
-  const search = useTableGlobalFilter({ searchPlaceholder: t('common.label.search') });
 
   const [selectedLevel, setSelectedLevel] = useState<LogLevel>('DEBUG');
   const [isUserLog, setIsUserLog] = useState(false);
@@ -60,9 +61,8 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
       .filter(entry => (isUserLog ? entry.category === 'USER' : true));
   }, [RuntimeLogEntry, selectedProjects, selectedLevel, isUserLog]);
 
-  const columns: Array<ColumnDef<RuntimeLogEntry, string>> = [
-    {
-      accessorKey: 'level',
+  const columns = columnHelper.columns([
+    columnHelper.accessor('level', {
       header: ({ column }) => <SortableHeader column={column} name={t('common.label.type')} />,
       cell: cell => (
         <Flex alignItems='center' gap={2}>
@@ -71,40 +71,32 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
         </Flex>
       ),
       maxSize: 30,
-      sortingFn: (rowA, rowB) => {
-        const levelA = levelPriority[rowA.getValue('level') as LogLevel];
-        const levelB = levelPriority[rowB.getValue('level') as LogLevel];
+      sortFn: (rowA, rowB) => {
+        const levelA = levelPriority[rowA.getValue('level') as LogLevel] ?? Number.MIN_SAFE_INTEGER;
+        const levelB = levelPriority[rowB.getValue('level') as LogLevel] ?? Number.MIN_SAFE_INTEGER;
         return levelA - levelB;
       }
-    },
-    {
-      accessorKey: 'project',
+    }),
+    columnHelper.accessor('project', {
       header: ({ column }) => <SortableHeader column={column} name={t('common.label.project')} />,
       cell: cell => cell.getValue(),
       maxSize: 30
-    },
-    {
-      accessorKey: 'message',
+    }),
+    columnHelper.accessor('message', {
       header: ({ column }) => <SortableHeader column={column} name={t('common.label.message')} />,
       cell: cell => (
         <div className='truncate' title={cell.getValue()}>
           {cell.getValue()}
         </div>
       )
-    }
-  ];
+    })
+  ]);
 
-  const table = useReactTable({
+  const table = useTable<DataTableFeatures, RuntimeLogEntry>({
+    ...tableOptions,
     enableMultiRowSelection: false,
-    ...sort.options,
-    ...search.options,
     data: filteredData,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    state: {
-      ...sort.tableState,
-      ...search.tableState
-    }
+    columns
   });
 
   const handleLogLevelChange = (checked: boolean, level: LogLevel) => {
@@ -116,7 +108,9 @@ export const RuntimeLogTable = ({ RuntimeLogEntry, clearlogs, onRowClick }: View
   return (
     <Flex direction='column' gap={2} className='h-full overflow-auto'>
       <Flex alignItems='center' gap={2}>
-        <div className='flex-1'>{search.filter}</div>
+        <div className='flex-1'>
+          <TableGlobalFilter table={table} placeholder={t('common.label.search')} />
+        </div>
         <FilterOptions
           handleProjectFilterChange={setSelectedProjects}
           selectedProjects={selectedProjects}
